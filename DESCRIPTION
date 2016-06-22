@@ -6,7 +6,7 @@ Description: Provides functions to support the computation of indices of
     careless responding. Initial indices include even/odd, psychometric synonyms,
     outlier, and longstring as described in Meade & Craig (2012)
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.3.0), Hmisc
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

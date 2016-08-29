@@ -46,10 +46,9 @@ evenodd <- function(d, factors) {
     # and store the result in the output vector.
     tmp <- cor(f[,1], f[,2])
     tmp <- (2*tmp)/(1+tmp)
-    if(tmp < -1) tmp <- -1
+    if(!is.na(tmp) && tmp < -1) tmp <- -1
     eo[i] <- tmp
     rm(f)
   }
-  
   return(eo)
 }

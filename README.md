@@ -25,7 +25,7 @@ library('devtools')
 3) Download and install the `careless` package from the Github source code.
 
 ```r
-install_github('ryentes.careless')
+install_github('ryentes/careless')
 library('careless')
 ```
 

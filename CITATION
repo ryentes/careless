@@ -1,0 +1,11 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+	 title = "careless: Procedures for computing indices of careless responding",
+	 author = c(person(c("Richard", "Dean"), "Yentes")),
+	 year = year,
+	 note=note,
+	 url = "https://github.com/ryente/careless")
+
+textVersion = paste0("Yentes R.D. (", year, "). careless: Procedures for computing indices of careless responding.", note, ".") 

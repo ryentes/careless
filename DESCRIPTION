@@ -1,6 +1,6 @@
 Package: careless
-Title: Collection of Implementations for Indices of Careless Responding.
-Version: 0.9
+Title: Procedures for computing indices of careless responding.
+Version: 1.0
 Authors@R: person("Richard", "Yentes", email = "rdyentes@ncsu.edu", role = c("aut", "cre"))
 Description: Provides functions to support the computation of indices of
     careless responding. Initial indices include even/odd, psychometric synonyms,

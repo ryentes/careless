@@ -9,7 +9,7 @@ Provides functions to support the computation of indices of careless responding.
 
 ## Current Version
 
-Current version is 0.9
+Current version is 1.0
 
 ## Installing from source
 
@@ -28,6 +28,9 @@ library('devtools')
 install_github('ryentes/careless')
 library('careless')
 ```
+
+## APA Citation
+Yentes, R.D. (2016) careless: Procedures for computing indices of careless responding. R packages version 1.0. url: https://github.com/ryentes/careless
 
 ## License
 

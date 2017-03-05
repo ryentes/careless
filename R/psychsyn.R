@@ -12,7 +12,7 @@
 #' @param anto determines whether psychometric anonyms are returned instead of 
 #' psychometric synonyms. Defaults to FALSE
 #' 
-#' @author Richard Yentes \email(rdyentes@ncsu.edu)
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}
 #' @import Hmisc
 #' @export
 #' @examples 

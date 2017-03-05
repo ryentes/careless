@@ -11,7 +11,7 @@
 #' @param raw determines whether the result vector contains outlier flags or raw
 #' Mahalanobis distance values (default = FALSE)
 #' 
-#' @author Richard Yentes \email(rdyentes@ncsu.edu)
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}
 #' @export
 #' @examples 
 #' \dontrun{

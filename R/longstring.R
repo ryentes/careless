@@ -8,7 +8,7 @@
 #' @param data is a matrix of data
 #' @param na is a boolean indicating whether na values are present in the data
 #' 
-#' @author Richard Yentes \email(rdyentes@ncsu.edu)
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}
 #' @export
 #' @examples
 #' \dontrun{

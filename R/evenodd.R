@@ -10,7 +10,7 @@
 #' @param factors is a vector of integers specifying the length of each
 #' factor in the dataset
 #' 
-#' @author Richard Yentes \email(rdyentes@ncsu.edu)
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}
 #' @export
 #' @examples 
 #' \dontrun{

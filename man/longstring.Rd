@@ -2,32 +2,31 @@
 % Please edit documentation in R/longstring.R
 \name{longstring}
 \alias{longstring}
-\title{Identifies the longest string of identical responses for each observation}
+\title{Identifies the longest string of identical consecutive responses for each observation}
 \usage{
-longstring(data, na = F)
+longstring(x, avg = F)
 }
 \arguments{
-\item{data}{is a matrix of data}
+\item{x}{a matrix of data (e.g. item responses)}
 
-\item{na}{is a boolean indicating whether na values are present in the data}
+\item{avg}{a boolean indicating whether to additionally return the average length of identical consecutive responses}
 }
 \description{
-Takes a matrix of item responses and, beginning with the second column 
+Takes a matrix of item responses and, beginning with the second column (i.e., second item)
 compares each column with the previous one to check for matching responses.
-For each observation, the length of the maximum uninterupted chain of 
-identical repsonses is returned.
+For each observation, the length of the maximum uninterrupted string of
+identical responses is returned. Additionally, can return the average length of uninterrupted string of identical responses.
 }
 \examples{
-\dontrun{
-d <- matrix(rep(1:10,10), ncol=10, nrow=10, byrow=T)
-for(i in 1:10){
-  d[i,which(1:10 <= i)] <- i
+carelessLong <- longstring(carelessDataset, avg = F)
+carelessAvg <- longstring(carelessDataset, avg = T)
+boxplot(carelessAvg$longstr) #produce a boxplot of the longstring index
+boxplot(carelessAvg$avgstr)
 }
-longstring(d)
-}
-Last Updated 14-June-2016
+\references{
+Johnson, J. A. (2005). Ascertaining the validity of individual protocols
+from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009
 }
 \author{
-Richard Yentes \email(rdyentes@ncsu.edu)
+Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }
-

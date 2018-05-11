@@ -5,11 +5,11 @@ Collection of Implementations for Indices of Careless Responding.
 
 ## Description
 
-Provides functions to support the computation of indices of careless responding. Initial indices include even/odd, psychometric synonyms, outlier, and longstring as described in Meade & Craig (2012)
+Provides functions to support the computation of indices of careless responding. Indices include even/odd, psychometric synonyms/antonyms, longstring, and Mahalanobis distance as described in Meade & Craig (2012), and intra-individual response variability as described in Dunn et al. (2018)
 
 ## Current Version
 
-Current version is 1.0
+Current version is 2.0 (BETA 1)
 
 ## Installing from source
 

@@ -9,7 +9,7 @@ Provides functions to support the computation of indices of careless responding.
 
 ## Current Version
 
-Current version is 2.0 (BETA 1)
+Current version is 1.0.1
 
 ## Installing from source
 

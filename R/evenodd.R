@@ -8,8 +8,8 @@
 #' @param x a matrix of data (e.g. survey responses)
 #' @param factors a vector of integers specifying the length of each
 #' factor in the dataset
-#' @param diag optionally returns a column with the number of even/odd pairs
-#' for which no comparison could be computed because of NAs. Useful for datasets with many missing values.
+#' @param diag optionally returns a column with the number of available (i.e., non-missing) even/odd pairs per observation.
+#' Useful for datasets with many missing values.
 #' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #'Johnson, J. A. (2005). Ascertaining the validity of individual protocols
@@ -21,8 +21,8 @@
 
 evenodd <- function(x, factors, diag = FALSE) {
   #initialize a result dataset
-  eo <- vector(length=nrow(x), mode="numeric")
-  eoMissing <- vector(length=nrow(x), mode="numeric")
+  eo <- vector(length = nrow(x), mode = "numeric")
+  eoMissing <- vector(length = nrow(x), mode = "numeric")
 
   # Loop through each Person
   for(i in 1:nrow(x)) {
@@ -47,7 +47,7 @@ evenodd <- function(x, factors, diag = FALSE) {
     # Calculate within-person correlation between even and odd sub-scales
     # then apply the Spearman-Brown correction for split-half reliability
     # and store the result in the output vector.
-    eoMissing[i] <- sum(is.na(apply(f, 1, sum))) #number of even/odd pairs for which no comparison can be computed because of NAs
+    eoMissing[i] <- sum(!is.na(apply(f, 1, sum))) #number of even/odd pairs for which no comparison can be computed because of NAs
     tmp <- cor(f[,1], f[,2], use ="pairwise.complete.obs")
     tmp <- (2*tmp)/(1+tmp)
     if(!is.na(tmp) && tmp < -1) tmp <- -1

@@ -23,4 +23,5 @@ psychsynCritVal <- function(x, anto = F) {
   else {
   correlations <- correlations[order(correlations$Freq, decreasing = F),]
   }
+  return(correlations)
 }

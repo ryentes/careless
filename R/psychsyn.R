@@ -14,7 +14,7 @@
 #' in order for them to be considered psychometric synonyms. Defaults to .60
 #' @param anto determines whether psychometric anonyms are returned instead of
 #' psychometric synonyms. Defaults to \code{FALSE}
-#' @param diag additionally return the number of item pairs available for each subject. Useful if dataset contains many missing values.
+#' @param diag additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
 #' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

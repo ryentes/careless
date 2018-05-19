@@ -1,14 +1,16 @@
 Package: careless
-Version: 1.0
-Date: 2016-11-26
+Type: Package
 Title: Procedures for computing indices of careless responding.
-Authors@R: person("Richard", "Yentes", email = "rdyentes@ncsu.edu", role = c("aut", "cre"))
-Description: Provides functions to support the computation of indices of
-    careless responding. Initial indices include even/odd, psychometric synonyms,
-    outlier, and longstring as described in Meade & Craig (2012)
-Depends:
-    R (>= 3.3.0), Hmisc
+Version: 1.0.1
+Date: 2018-11-05
+Authors@R: c(
+            person("Richard", "Yentes" , email = "rdyentes@ncsu.edu", role = c("aut", "cre")),
+            person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut")))
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description:  Provides functions to support the computation of indices of
+    careless / insufficient effort responding. These types of reponses constitute significant problems for data quality leading to distortions in hypotheses testing and analyses.
 License: MIT + file LICENSE
+Imports: psych
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.0.1

@@ -4,26 +4,31 @@
 \alias{evenodd}
 \title{Calculates the even-odd consistency score}
 \usage{
-evenodd(d, factors)
+evenodd(x, factors, diag = FALSE)
 }
 \arguments{
-\item{d}{is a matrix of data (e.g. survey repsonses)}
+\item{x}{a matrix of data (e.g. survey responses)}
 
-\item{factors}{is a vector of integers specifying the length of each
+\item{factors}{a vector of integers specifying the length of each
 factor in the dataset}
+
+\item{diag}{optionally returns a column with the number of even/odd pairs
+for which no comparison could be computed because of NAs. Useful for datasets with many missing values.}
 }
 \description{
-Takes a matrix of item responses and a vector of integers representing the 
+Takes a matrix of item responses and a vector of integers representing the
 length each factor. The even-odd consistency score is then computed as the
-within-person correlation between the even and odd subscales over all the 
-factors
+within-person correlation between the even and odd subscales over all the
+factors.
 }
 \examples{
-\dontrun{
-eo <- evenodd(d, c(rep(10,10)))
+carelessEo <- evenodd(carelessDataset, rep(5,10))
+carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = T)
 }
+\references{
+Johnson, J. A. (2005). Ascertaining the validity of individual protocols
+from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009
 }
 \author{
-Richard Yentes \email(rdyentes@ncsu.edu)
+Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }
-

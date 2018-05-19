@@ -2,34 +2,49 @@
 % Please edit documentation in R/psychsyn.R
 \name{psychsyn}
 \alias{psychsyn}
-\title{Computes the psychometric synonym score}
+\title{Computes the psychometric synonym/antonym score}
 \usage{
-psychsyn(data, critVal = 0.6, anto = FALSE)
+psychsyn(x, critVal = 0.6, anto = FALSE, diag = FALSE)
 }
 \arguments{
-\item{data}{is a matrix of item responses}
+\item{x}{is a matrix of item responses}
 
 \item{critVal}{is the minimum magnitude of the correlation between two items
 in order for them to be considered psychometric synonyms. Defaults to .60}
 
-\item{anto}{determines whether psychometric anonyms are returned instead of 
-psychometric synonyms. Defaults to FALSE}
+\item{anto}{determines whether psychometric anonyms are returned instead of
+psychometric synonyms. Defaults to \code{FALSE}}
+
+\item{diag}{additionally return the number of item pairs available for each subject. Useful if dataset contains many missing values.}
 }
 \description{
-Takes a matrix of item responses and identifies item pairs that are highly 
-correlated within the overall dataset. Each respondents psychometric synonym
-score is then comptued as the within-person correlation between the
+Takes a matrix of item responses and identifies item pairs that are highly
+correlated within the overall dataset.
+What defines "highly correlated" is set by the critical value (e.g., r > .60).
+Each respondents' psychometric synonym
+score is then computed as the within-person correlation between the
 identified item-pairs.
+Alternatively computes the psychometric antonym score which is a
+variant that uses item pairs that are highly \emph{negatively} correlated.
 }
 \examples{
-\dontrun{
-synonyms <- psychsyn(data, .70)
+synonyms <- psychsyn(carelessDataset, .60)
+antonyms <- psychsyn(carelessDataset, .30, anto=T)
+antonyms <- psychant(carelessDataset, .30)
 
-antonyms <- psychsyn(data, anto=T) 
+#with diagnostics
+synonyms <- psychsyn(carelessDataset, .60, diag = T)
+antonyms <- psychant(carelessDataset, .30, diag = T)
 }
-Last updated 22-june-2016
+\references{
+Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
+Psychological Methods, 17(3), 437-455. https://doi.org/10.1037/a0028085
+}
+\seealso{
+\code{\link{psychant}} for a more concise way to calculate the psychometric antonym score,
+ \code{\link{psychsynCritVal}} for a helper that allows to set an
+adequate critical value for the size of the correlation.
 }
 \author{
-Richard Yentes \email(rdyentes@ncsu.edu)
+Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }
-

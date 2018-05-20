@@ -25,8 +25,8 @@ an implementation which supports missing values.
 }
 \examples{
 mahadRaw <- mahaD(carelessDataset) #only the distances themselves
-mahadFlags <- mahaD(carelessDataset, flag = T) #additionally flag outliers
-mahadFlags <- mahaD(carelessDataset, flag = T, confidence = 0.999) #flag with more strict criterion
+mahadFlags <- mahaD(carelessDataset, flag = TRUE) #additionally flag outliers
+mahadFlags <- mahaD(carelessDataset, flag = TRUE, confidence = 0.999) #flag with more strict criterion
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

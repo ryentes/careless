@@ -9,7 +9,7 @@ outlier(data, confidence = 0.95, raw = FALSE)
 \arguments{
 \item{data}{is a matrix of data}
 
-\item{confidence}{is the desired confidence level of the result 
+\item{confidence}{is the desired confidence level of the result
 (default =.95)}
 
 \item{raw}{determines whether the result vector contains outlier flags or raw
@@ -17,13 +17,13 @@ Mahalanobis distance values (default = FALSE)}
 }
 \description{
 Takes a matrix of item repsonses and computes Mahalanobis distance. Returns a
-vector of binary outlier flags by default. If the raw options is specified 
+vector of binary outlier flags by default. If the raw options is specified
 the function returns a vector of raw Mahalanobis distance scores.
 }
 \examples{
 \dontrun{
 x <- outlier(data)
-mahd <- outlier(data,raw=T)
+mahd <- outlier(data,raw=TRUE)
 z <- outlier(data, confidence=.999)
 }
 }

@@ -4,7 +4,7 @@
 \alias{psychsynCritVal}
 \title{Compute the correlations between all possible item pairs and order them by the magnitude of the correlation}
 \usage{
-psychsynCritVal(x, anto = F)
+psychsynCritVal(x, anto = FALSE)
 }
 \arguments{
 \item{x}{a matrix of item responses.}
@@ -17,7 +17,7 @@ Takes a matrix of item responses and returns a data frame giving the correlation
 }
 \examples{
 psychsynCor <- psychsynCritVal(carelessDataset)
-psychsynCor <- psychsynCritVal(carelessDataset, anto = T)
+psychsynCor <- psychsynCritVal(carelessDataset, anto = TRUE)
 }
 \seealso{
 after determining an adequate critical value, continue with \code{\link{psychsyn}} and/or \code{\link{psychant}}

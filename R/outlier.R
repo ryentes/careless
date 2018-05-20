@@ -22,14 +22,14 @@
 # Last updated 8-june-2015
 outlier <- function(data, confidence=.95, raw=FALSE) {
     mu <- colMeans(data)
-    Sx <- cov(data)
+    Sx <- stats::cov(data)
 
-    d2 <- mahalanobis(data, mu, Sx)
+    d2 <- stats::mahalanobis(data, mu, Sx)
 
     if(raw) {
         return(d2)
     } else {
-        cut <- qchisq(confidence, ncol(data))
+        cut <- stats::qchisq(confidence, ncol(data))
         return(d2 > cut)
     }
 }

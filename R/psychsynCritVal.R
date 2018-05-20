@@ -13,7 +13,7 @@
 #' psychsynCor <- psychsynCritVal(carelessDataset, anto = TRUE)
 
 psychsynCritVal <- function(x, anto = FALSE) {
-  correlations <- cor(x, use = "pairwise.complete.obs")
+  correlations <- stats::cor(x, use = "pairwise.complete.obs")
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))
 

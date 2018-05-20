@@ -48,7 +48,7 @@ evenodd <- function(x, factors, diag = FALSE) {
     # then apply the Spearman-Brown correction for split-half reliability
     # and store the result in the output vector.
     eoMissing[i] <- sum(!is.na(apply(f, 1, sum))) #number of even/odd pairs for which no comparison can be computed because of NAs
-    tmp <- cor(f[,1], f[,2], use ="pairwise.complete.obs")
+    tmp <- stats::cor(f[,1], f[,2], use ="pairwise.complete.obs")
     tmp <- (2*tmp)/(1+tmp)
     if(!is.na(tmp) && tmp < -1) tmp <- -1
     eo[i] <- tmp

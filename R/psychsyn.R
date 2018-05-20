@@ -47,7 +47,7 @@ getItemPairs <- function(x, critVal=.60, anto=FALSE) {
   x <- as.matrix(x)
   critVal <- abs(critVal) #Dummy Proofing
 
-  correlations <- cor(x, use = "pairwise.complete.obs")
+  correlations <- stats::cor(x, use = "pairwise.complete.obs")
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))
 
@@ -77,7 +77,7 @@ synForOne <- function(x, itemPairs) {
 
   if(sumItemPairs > 2) {
       itemvalues <- cbind(as.numeric(x[as.numeric(itemPairs[,1])]), as.numeric(x[as.numeric(itemPairs[,2])]))
-      synvalue <- suppressWarnings(cor(itemvalues, use = "pairwise.complete.obs", method = "pearson")[1,2])
+      synvalue <- suppressWarnings(stats::cor(itemvalues, use = "pairwise.complete.obs", method = "pearson")[1,2])
 
   } else {synvalue = NA}
 

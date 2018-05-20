@@ -2,8 +2,8 @@
 #'
 #' Takes a matrix of item responses and computes Mahalanobis D. Can additionally return a
 #' vector of binary outlier flags.
-#' Mahalanobis distance is calculated using the function \code{psych::outlier} of the \pkg{psych} package,
-#' an implementation which supports missing values.
+#' Mahalanobis distance is calculated using the function \code{psych::outlier} of the \pkg{psych}
+#' package, an implementation which supports missing values.
 #'
 #' @param x a matrix of data
 #' @param plot Plot the resulting QQ graph
@@ -19,12 +19,12 @@
 #' @examples
 #' mahadRaw <- mahaD(carelessDataset) #only the distances themselves
 #' mahadFlags <- mahaD(carelessDataset, flag = TRUE) #additionally flag outliers
-#' mahadFlags <- mahaD(carelessDataset, flag = TRUE, confidence = 0.999) #flag with more strict criterion
+#' mahadFlags <- mahaD(carelessDataset, flag = TRUE, confidence = 0.999) #Apply a strict criterion
 
 mahaD <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE) {
   raw <- as.numeric(psych::outlier(x, plot, bad = 0, na.rm = na.rm))
   if(flag == TRUE) {
-    cut <- qchisq(confidence, ncol(x))
+    cut <- stats::qchisq(confidence, ncol(x))
     flagged <- (raw > cut)
     return(data.frame(raw, flagged))
   }

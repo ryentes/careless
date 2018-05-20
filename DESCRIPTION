@@ -1,6 +1,6 @@
 Package: careless
 Type: Package
-Title: Procedures for computing indices of careless responding.
+Title: Procedures for computing indices of careless responding
 Version: 1.0.2
 Date: 2018-11-05
 Authors@R: c(
@@ -9,9 +9,10 @@ Authors@R: c(
 Description: Provides functions to support the computation of indices of
     careless / insufficient effort responding. These types of reponses constitute significant problems for data quality leading to distortions in hypotheses testing and analyses.
 License: MIT + file LICENSE
-Imports: psych
+Imports:
+    psych
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Suggests: 
+Suggests:
     testthat

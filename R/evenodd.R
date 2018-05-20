@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #' carelessEo <- evenodd(carelessDataset, rep(5,10))
-#' carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = T)
+#' carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = TRUE)
 
 evenodd <- function(x, factors, diag = FALSE) {
   #initialize a result dataset

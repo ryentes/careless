@@ -28,6 +28,5 @@ z <- outlier(data, confidence=.999)
 }
 }
 \author{
-Richard Yentes \email(rdyentes@ncsu.edu)
+Richard Yentes \email{rdyentes@ncsu.edu}
 }
-

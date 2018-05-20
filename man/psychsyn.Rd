@@ -15,7 +15,7 @@ in order for them to be considered psychometric synonyms. Defaults to .60}
 \item{anto}{determines whether psychometric anonyms are returned instead of
 psychometric synonyms. Defaults to \code{FALSE}}
 
-\item{diag}{additionally return the number of item pairs available for each subject. Useful if dataset contains many missing values.}
+\item{diag}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}
 }
 \description{
 Takes a matrix of item responses and identifies item pairs that are highly

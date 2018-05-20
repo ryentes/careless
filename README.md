@@ -34,7 +34,7 @@ library('careless')
 ```
 
 ## APA Citation
-Yentes, R.D. (2016) careless: Procedures for computing indices of careless responding. R packages version 1.0. url: https://github.com/ryentes/careless
+Yentes, R.D., & Wilhelm, F. (2018) careless: Procedures for computing indices of careless responding. R packages version 1.0.2 url: https://github.com/ryentes/careless
 
 ## License
 

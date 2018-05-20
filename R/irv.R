@@ -21,12 +21,12 @@
 #' irvTotal <- irv(carelessDataset)
 #'
 #' #calculate the irv over all items + calculate the irv for each quarter of the questionnaire
-#' irvSplit <- irv(carelessDataset, split = T, numSplit = 4)
+#' irvSplit <- irv(carelessDataset, split = TRUE, numSplit = 4)
 #' boxplot(irvSplit$irv4) #produce a boxplot of the IRV for the fourth quarter
 
-irv <- function(x, split = F, numSplit = 3) {
+irv <- function(x, split = FALSE, numSplit = 3) {
   out <- apply(x, 1, sd)
-  if(split == T) {
+  if(split == TRUE) {
     chunk <- function(x,n) split(x, cut(seq_along(x), n, labels = FALSE))
     splitX <- apply(x, 1, chunk, numSplit)
     outSplit <- t(replicate(nrow(x), rep(NA, numSplit)))

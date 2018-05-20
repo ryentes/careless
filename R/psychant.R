@@ -12,7 +12,7 @@
 #' adequate critical value for the size of the correlation.
 #' @examples
 #' antonyms <- psychant(carelessDataset, .30)
-#' antonyms <- psychant(carelessDataset, .30, diag = T)
+#' antonyms <- psychant(carelessDataset, .30, diag = TRUE)
 
 psychant <- function(x, critVal= -.60, diag=FALSE) {
   psychsyn(x, critVal, anto = TRUE, diag)

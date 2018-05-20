@@ -13,12 +13,12 @@
 #' from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009
 #' @export
 #' @examples
-#' carelessLong <- longstring(carelessDataset, avg = F)
-#' carelessAvg <- longstring(carelessDataset, avg = T)
+#' carelessLong <- longstring(carelessDataset, avg = FALSE)
+#' carelessAvg <- longstring(carelessDataset, avg = TRUE)
 #' boxplot(carelessAvg$longstr) #produce a boxplot of the longstring index
 #' boxplot(carelessAvg$avgstr)
 
-longstring <- function(x, avg=F) {
+longstring <- function(x, avg=FALSE) {
 
   # subfunction that calculates the length of consecutive identical responses
   rlestring <- function(x) {
@@ -33,11 +33,9 @@ longstring <- function(x, avg=F) {
   output <- data.frame(t(output))
   colnames(output) <- (c('longstr','avgstr'))
 
-  if(avg == T) {
+  if(avg == TRUE) {
     return(output)
   } else {
     return(output[,'longstr'])
   }
 }
-
-

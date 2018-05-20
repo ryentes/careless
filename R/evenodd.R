@@ -10,7 +10,7 @@
 #' factor in the dataset
 #' @param diag optionally returns a column with the number of available (i.e., non-missing) even/odd pairs per observation.
 #' Useful for datasets with many missing values.
-#' @author Richard Yentes \email(rdyentes@ncsu.edu), Francisco Wilhelm \email(franciscowilhelm@gmail.com)
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #'Johnson, J. A. (2005). Ascertaining the validity of individual protocols
 #'from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009

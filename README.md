@@ -1,3 +1,7 @@
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Status master branch: [![Build Status](https://travis-ci.org/ryentes/careless.svg?branch=master)](https://travis-ci.org/ryentes/careless)
+Status dev branch" [![Build Status](https://travis-ci.org/ryentes/careless.svg?branch=dev)](https://travis-ci.org/ryentes/careless)
 
 # careless
 
@@ -9,7 +13,7 @@ Provides functions to support the computation of indices of careless responding.
 
 ## Current Version
 
-Current version is 1.0.1
+Current version is 1.0.2
 
 ## Installing from source
 

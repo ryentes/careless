@@ -10,7 +10,7 @@
 #' factor in the dataset
 #' @param diag optionally returns a column with the number of available (i.e., non-missing) even/odd pairs per observation.
 #' Useful for datasets with many missing values.
-#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email(rdyentes@ncsu.edu), Francisco Wilhelm \email(franciscowilhelm@gmail.com)
 #' @references
 #'Johnson, J. A. (2005). Ascertaining the validity of individual protocols
 #'from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009
@@ -40,8 +40,8 @@ evenodd <- function(x, factors, diag = FALSE) {
       ind <- seq(1:length(colnames(s)))
       eInd <- which(ind %% 2 == 0)
       oInd <- which(ind %% 2 == 1)
-      f[j,1] <- mean(t(s[eInd]), na.rm = T)
-      f[j,2] <- mean(t(s[oInd]), na.rm = T)
+      f[j,1] <- mean(t(s[eInd]), na.rm = TRUE)
+      f[j,2] <- mean(t(s[oInd]), na.rm = TRUE)
     }
 
     # Calculate within-person correlation between even and odd sub-scales
@@ -54,6 +54,6 @@ evenodd <- function(x, factors, diag = FALSE) {
     eo[i] <- tmp
     rm(f)
   }
-  if(diag == F) {return(eo)}
+  if(diag == FALSE) {return(eo)}
   else {return(data.frame(eo, eoMissing))}
 }

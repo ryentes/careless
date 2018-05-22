@@ -25,12 +25,12 @@
 #' @export
 #' @examples
 #' synonyms <- psychsyn(carelessDataset, .60)
-#' antonyms <- psychsyn(carelessDataset, .30, anto=T)
-#' antonyms <- psychant(carelessDataset, .30)
+#' antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
+#' antonyms <- psychant(carelessDataset2, .50)
 #'
 #' #with diagnostics
-#' synonyms <- psychsyn(carelessDataset, .60, diag = T)
-#' antonyms <- psychant(carelessDataset, .30, diag = T)
+#' synonyms <- psychsyn(carelessDataset, .60, diag = TRUE)
+#' antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
 
 psychsyn <- function(x, critVal=.60, anto=FALSE, diag=FALSE) {
   x <- as.matrix(x)
@@ -38,7 +38,7 @@ psychsyn <- function(x, critVal=.60, anto=FALSE, diag=FALSE) {
   synonyms <- apply(x,1,synForOne, itemPairs)
   synonyms.df <- as.data.frame(aperm(synonyms))
   colnames(synonyms.df) <- c("numPairs", "cor")
-  if(diag==T) { return(synonyms.df) }
+  if(diag==TRUE) { return(synonyms.df) }
   else { return(synonyms.df$cor) }
 }
 
@@ -47,20 +47,20 @@ getItemPairs <- function(x, critVal=.60, anto=FALSE) {
   x <- as.matrix(x)
   critVal <- abs(critVal) #Dummy Proofing
 
-  correlations <- cor(x, use = "pairwise.complete.obs")
+  correlations <- stats::cor(x, use = "pairwise.complete.obs")
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))
 
   # Identifying item pairs differs depending on whether the user wants
   # Psychometric Synonyms or Psychometric Antonyms
   if(anto==FALSE) {
-    itemPairNames <- correlations[which(correlations$Freq > critVal, arr.in=TRUE),c(1,2)]
+    itemPairNames <- correlations[which(correlations$Freq > critVal, arr.ind=TRUE),c(1,2)]
     if(nrow(itemPairNames)==0) {
       stop("No Psychometric Synonyms found.")
     }
   }
   else if(anto==TRUE) {
-    itemPairNames <- correlations[which(correlations$Freq < -critVal, arr.in=TRUE),c(1,2)]
+    itemPairNames <- correlations[which(correlations$Freq < -critVal, arr.ind=TRUE),c(1,2)]
     if(nrow(itemPairNames)==0) {
       stop("No Psychometric Antonyms found.")
     }
@@ -77,7 +77,7 @@ synForOne <- function(x, itemPairs) {
 
   if(sumItemPairs > 2) {
       itemvalues <- cbind(as.numeric(x[as.numeric(itemPairs[,1])]), as.numeric(x[as.numeric(itemPairs[,2])]))
-      synvalue <- suppressWarnings(cor(itemvalues, use = "pairwise.complete.obs", method = "pearson")[1,2])
+      synvalue <- suppressWarnings(stats::cor(itemvalues, use = "pairwise.complete.obs", method = "pearson")[1,2])
 
   } else {synvalue = NA}
 

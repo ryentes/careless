@@ -4,7 +4,7 @@
 \alias{longstring}
 \title{Identifies the longest string of identical consecutive responses for each observation}
 \usage{
-longstring(x, avg = F)
+longstring(x, avg = FALSE)
 }
 \arguments{
 \item{x}{a matrix of data (e.g. item responses)}
@@ -18,8 +18,8 @@ For each observation, the length of the maximum uninterrupted string of
 identical responses is returned. Additionally, can return the average length of uninterrupted string of identical responses.
 }
 \examples{
-carelessLong <- longstring(carelessDataset, avg = F)
-carelessAvg <- longstring(carelessDataset, avg = T)
+carelessLong <- longstring(carelessDataset, avg = FALSE)
+carelessAvg <- longstring(carelessDataset, avg = TRUE)
 boxplot(carelessAvg$longstr) #produce a boxplot of the longstring index
 boxplot(carelessAvg$avgstr)
 }

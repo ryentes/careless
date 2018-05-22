@@ -1,3 +1,7 @@
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br/>
+Status master branch: [![Build Status](https://travis-ci.org/ryentes/careless.svg?branch=master)](https://travis-ci.org/ryentes/careless)<br/>
+Status dev branch: [![Build Status](https://travis-ci.org/ryentes/careless.svg?branch=dev)](https://travis-ci.org/ryentes/careless)
 
 # careless
 
@@ -5,11 +9,11 @@ Collection of Implementations for Indices of Careless Responding.
 
 ## Description
 
-Provides functions to support the computation of indices of careless responding. Indices include even/odd, psychometric synonyms/antonyms, longstring, and Mahalanobis distance as described in Meade & Craig (2012), and intra-individual response variability as described in Dunn et al. (2018)
+Careless or insufficient effort responding in surveys, i.e. responding to items without regard to their content, is a common occurence in surveys. These types of responses constitute significant problems for data quality leading to distortions in data analysis and hypothesis testing, such as spurious correlations. The R package careless provides solutions designed to detect such careless / insufficient effort responses by allowing easy calculation of indices proposed in the literature. It currently supports the calculation of Longstring, Even-Odd Consistency, Psychometric Synonyms/Antonyms, Mahalanobis Distance, and Intra-individual Response Variability (also termed Inter-item Standard Deviation).
 
 ## Current Version
 
-Current version is 1.0.1
+Current version is 1.1.0
 
 ## Installing from source
 
@@ -30,7 +34,7 @@ library('careless')
 ```
 
 ## APA Citation
-Yentes, R.D. (2016) careless: Procedures for computing indices of careless responding. R packages version 1.0. url: https://github.com/ryentes/careless
+Yentes, R.D., & Wilhelm, F. (2018) careless: Procedures for computing indices of careless responding. R packages version 1.1.0 url: https://github.com/ryentes/careless
 
 ## License
 

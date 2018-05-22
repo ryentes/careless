@@ -18,8 +18,8 @@ in order for them to be considered psychometric synonyms. Defaults to -.60}
 A convenient wrapper that calls \code{psychsyn} with argument \code{anto = TRUE} to compute the psychometric antonym score.
 }
 \examples{
-antonyms <- psychant(carelessDataset, .30)
-antonyms <- psychant(carelessDataset, .30, diag = T)
+antonyms <- psychant(carelessDataset2, .50)
+antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
 }
 \seealso{
 \code{\link{psychsyn}} for the main function, \code{\link{psychsynCritVal}} for a helper that allows to set an

@@ -4,7 +4,7 @@
 \alias{irv}
 \title{Calculates the intra-individual response variability (IRV)}
 \usage{
-irv(x, split = F, numSplit = 3)
+irv(x, split = FALSE, numSplit = 3)
 }
 \arguments{
 \item{x}{a matrix of data (e.g. survey responses)}
@@ -25,7 +25,7 @@ This can detect degraded response quality which occurs only in a certain section
 irvTotal <- irv(carelessDataset)
 
 #calculate the irv over all items + calculate the irv for each quarter of the questionnaire
-irvSplit <- irv(carelessDataset, split = T, numSplit = 4)
+irvSplit <- irv(carelessDataset, split = TRUE, numSplit = 4)
 boxplot(irvSplit$irv4) #produce a boxplot of the IRV for the fourth quarter
 }
 \references{

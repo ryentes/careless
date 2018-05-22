@@ -15,7 +15,7 @@ in order for them to be considered psychometric synonyms. Defaults to .60}
 \item{anto}{determines whether psychometric anonyms are returned instead of
 psychometric synonyms. Defaults to \code{FALSE}}
 
-\item{diag}{additionally return the number of item pairs available for each subject. Useful if dataset contains many missing values.}
+\item{diag}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}
 }
 \description{
 Takes a matrix of item responses and identifies item pairs that are highly
@@ -29,12 +29,12 @@ variant that uses item pairs that are highly \emph{negatively} correlated.
 }
 \examples{
 synonyms <- psychsyn(carelessDataset, .60)
-antonyms <- psychsyn(carelessDataset, .30, anto=T)
-antonyms <- psychant(carelessDataset, .30)
+antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
+antonyms <- psychant(carelessDataset2, .50)
 
 #with diagnostics
-synonyms <- psychsyn(carelessDataset, .60, diag = T)
-antonyms <- psychant(carelessDataset, .30, diag = T)
+synonyms <- psychsyn(carelessDataset, .60, diag = TRUE)
+antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

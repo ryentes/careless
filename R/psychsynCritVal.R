@@ -10,18 +10,18 @@
 #' @seealso after determining an adequate critical value, continue with \code{\link{psychsyn}} and/or \code{\link{psychant}}
 #' @examples
 #' psychsynCor <- psychsynCritVal(carelessDataset)
-#' psychsynCor <- psychsynCritVal(carelessDataset, anto = T)
+#' psychsynCor <- psychsynCritVal(carelessDataset, anto = TRUE)
 
-psychsynCritVal <- function(x, anto = F) {
-  correlations <- cor(x, use = "pairwise.complete.obs")
+psychsynCritVal <- function(x, anto = FALSE) {
+  correlations <- stats::cor(x, use = "pairwise.complete.obs")
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))
 
-  if(anto == F) {
-    correlations <- correlations[order(correlations$Freq, decreasing = T),]
+  if(anto == FALSE) {
+    correlations <- correlations[order(correlations$Freq, decreasing = TRUE),]
   }
   else {
-  correlations <- correlations[order(correlations$Freq, decreasing = F),]
+  correlations <- correlations[order(correlations$Freq, decreasing = FALSE),]
   }
   return(correlations)
 }

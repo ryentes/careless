@@ -12,8 +12,8 @@ evenodd(x, factors, diag = FALSE)
 \item{factors}{a vector of integers specifying the length of each
 factor in the dataset}
 
-\item{diag}{optionally returns a column with the number of even/odd pairs
-for which no comparison could be computed because of NAs. Useful for datasets with many missing values.}
+\item{diag}{optionally returns a column with the number of available (i.e., non-missing) even/odd pairs per observation.
+Useful for datasets with many missing values.}
 }
 \description{
 Takes a matrix of item responses and a vector of integers representing the
@@ -23,7 +23,7 @@ factors.
 }
 \examples{
 carelessEo <- evenodd(carelessDataset, rep(5,10))
-carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = T)
+carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = TRUE)
 }
 \references{
 Johnson, J. A. (2005). Ascertaining the validity of individual protocols

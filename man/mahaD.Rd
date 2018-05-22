@@ -20,13 +20,13 @@ mahaD(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
 \description{
 Takes a matrix of item responses and computes Mahalanobis D. Can additionally return a
 vector of binary outlier flags.
-Mahalanobis distance is calculated using the function \code{psych::outlier} of the \pkg{psych} package,
-an implementation which supports missing values.
+Mahalanobis distance is calculated using the function \code{psych::outlier} of the \pkg{psych}
+package, an implementation which supports missing values.
 }
 \examples{
 mahadRaw <- mahaD(carelessDataset) #only the distances themselves
-mahadFlags <- mahaD(carelessDataset, flag = T) #additionally flag outliers
-mahadFlags <- mahaD(carelessDataset, flag = T, confidence = 0.999) #flag with more strict criterion
+mahadFlags <- mahaD(carelessDataset, flag = TRUE) #additionally flag outliers
+mahadFlags <- mahaD(carelessDataset, flag = TRUE, confidence = 0.999) #Apply a strict criterion
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

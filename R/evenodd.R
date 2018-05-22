@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #' carelessEo <- evenodd(carelessDataset, rep(5,10))
-#' carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = T)
+#' carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = TRUE)
 
 evenodd <- function(x, factors, diag = FALSE) {
   #initialize a result dataset
@@ -40,20 +40,20 @@ evenodd <- function(x, factors, diag = FALSE) {
       ind <- seq(1:length(colnames(s)))
       eInd <- which(ind %% 2 == 0)
       oInd <- which(ind %% 2 == 1)
-      f[j,1] <- mean(t(s[eInd]), na.rm = T)
-      f[j,2] <- mean(t(s[oInd]), na.rm = T)
+      f[j,1] <- mean(t(s[eInd]), na.rm = TRUE)
+      f[j,2] <- mean(t(s[oInd]), na.rm = TRUE)
     }
 
     # Calculate within-person correlation between even and odd sub-scales
     # then apply the Spearman-Brown correction for split-half reliability
     # and store the result in the output vector.
     eoMissing[i] <- sum(!is.na(apply(f, 1, sum))) #number of even/odd pairs for which no comparison can be computed because of NAs
-    tmp <- cor(f[,1], f[,2], use ="pairwise.complete.obs")
+    tmp <- stats::cor(f[,1], f[,2], use ="pairwise.complete.obs")
     tmp <- (2*tmp)/(1+tmp)
     if(!is.na(tmp) && tmp < -1) tmp <- -1
     eo[i] <- tmp
     rm(f)
   }
-  if(diag == F) {return(eo)}
+  if(diag == FALSE) {return(eo)}
   else {return(data.frame(eo, eoMissing))}
 }

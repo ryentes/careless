@@ -13,7 +13,7 @@ Careless or insufficient effort responding in surveys, i.e. responding to items 
 
 ## Current Version
 
-Current version is 1.0.2
+Current version is 1.1.0
 
 ## Installing from source
 
@@ -34,7 +34,7 @@ library('careless')
 ```
 
 ## APA Citation
-Yentes, R.D., & Wilhelm, F. (2018) careless: Procedures for computing indices of careless responding. R packages version 1.0.2 url: https://github.com/ryentes/careless
+Yentes, R.D., & Wilhelm, F. (2018) careless: Procedures for computing indices of careless responding. R packages version 1.1.0 url: https://github.com/ryentes/careless
 
 ## License
 

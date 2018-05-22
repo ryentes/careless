@@ -29,12 +29,12 @@ variant that uses item pairs that are highly \emph{negatively} correlated.
 }
 \examples{
 synonyms <- psychsyn(carelessDataset, .60)
-antonyms <- psychsyn(carelessDataset, .30, anto=TRUE)
-antonyms <- psychant(carelessDataset, .30)
+antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
+antonyms <- psychant(carelessDataset2, .50)
 
 #with diagnostics
 synonyms <- psychsyn(carelessDataset, .60, diag = TRUE)
-antonyms <- psychant(carelessDataset, .30, diag = TRUE)
+antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

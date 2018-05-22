@@ -25,12 +25,12 @@
 #' @export
 #' @examples
 #' synonyms <- psychsyn(carelessDataset, .60)
-#' antonyms <- psychsyn(carelessDataset, .30, anto=TRUE)
-#' antonyms <- psychant(carelessDataset, .30)
+#' antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
+#' antonyms <- psychant(carelessDataset2, .50)
 #'
 #' #with diagnostics
 #' synonyms <- psychsyn(carelessDataset, .60, diag = TRUE)
-#' antonyms <- psychant(carelessDataset, .30, diag = TRUE)
+#' antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
 
 psychsyn <- function(x, critVal=.60, anto=FALSE, diag=FALSE) {
   x <- as.matrix(x)

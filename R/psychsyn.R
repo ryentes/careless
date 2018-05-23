@@ -25,7 +25,7 @@
 #' @export
 #' @examples
 #' synonyms <- psychsyn(carelessDataset, .60)
-#' antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
+#' antonyms <- psychsyn(carelessDataset2, .50, anto = TRUE)
 #' antonyms <- psychant(carelessDataset2, .50)
 #'
 #' #with diagnostics

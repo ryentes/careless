@@ -14,7 +14,7 @@
 #' Dunn, A. M., Heggestad, E. D., Shanock, L. R., & Theilgard, N. (2018).
 #' Intra-individual Response Variability as an Indicator of Insufficient Effort Responding:
 #' Comparison to Other Indicators and Relationships with Individual Differences.
-#' Journal of Business and Psychology, 33(1), 105–121. https://doi.org/10.1007/s10869-016-9479-0
+#' Journal of Business and Psychology, 33(1), 105-121. https://doi.org/10.1007/s10869-016-9479-0
 #' @export
 #' @examples
 #' # calculate the irv over all items

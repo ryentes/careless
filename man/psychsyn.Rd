@@ -4,12 +4,12 @@
 \alias{psychsyn}
 \title{Computes the psychometric synonym/antonym score}
 \usage{
-psychsyn(x, critVal = 0.6, anto = FALSE, diag = FALSE)
+psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE)
 }
 \arguments{
 \item{x}{is a matrix of item responses}
 
-\item{critVal}{is the minimum magnitude of the correlation between two items
+\item{critval}{is the minimum magnitude of the correlation between two items
 in order for them to be considered psychometric synonyms. Defaults to .60}
 
 \item{anto}{determines whether psychometric anonyms are returned instead of
@@ -28,21 +28,21 @@ Alternatively computes the psychometric antonym score which is a
 variant that uses item pairs that are highly \emph{negatively} correlated.
 }
 \examples{
-synonyms <- psychsyn(carelessDataset, .60)
-antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
-antonyms <- psychant(carelessDataset2, .50)
+synonyms <- psychsyn(careless_dataset, .60)
+antonyms <- psychsyn(careless_dataset2, .50, anto = TRUE)
+antonyms <- psychant(careless_dataset2, .50)
 
 #with diagnostics
-synonyms <- psychsyn(carelessDataset, .60, diag = TRUE)
-antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
+synonyms <- psychsyn(careless_dataset, .60, diag = TRUE)
+antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
-Psychological Methods, 17(3), 437-455. https://doi.org/10.1037/a0028085
+\emph{Psychological Methods, 17(3)}, 437-455. \doi{10.1037/a0028085}
 }
 \seealso{
 \code{\link{psychant}} for a more concise way to calculate the psychometric antonym score,
- \code{\link{psychsynCritVal}} for a helper that allows to set an
+ \code{\link{psychsyn_critval}} for a helper that allows to set an
 adequate critical value for the size of the correlation.
 }
 \author{

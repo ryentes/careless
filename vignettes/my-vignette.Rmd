@@ -1,0 +1,140 @@
+---
+title: "Introduction to careless"
+author: "Francisco Wilhelm & Richard D. Yentes"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette  
+vignette: >
+  %\VignetteIndexEntry{Introduction to careless}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r include = FALSE}
+library(careless)
+knitr::opts_chunk$set(fig.width=6, fig.height=6) 
+```
+
+
+The `careless` package provides functions that help you screen your survey data for types of responses called "careless" or "insufficient effort". These response types will lower the quality of the data you collected, that, if unchecked, will lower the quality of your data analysis. This documents provides a short introduction to the basic functions of the package and teaches you how to screen your data for careless responses.
+
+## Sample Dataset: Simulation study
+The package comes with two simulated datasets, `careless::careless_dataset` and `careless::careless_dataset2`. We will use `careless_dataset2` in this introduction. The documentation of this dataset can be accessed via `?careless_dataset2`.
+
+## The classic: Longstring Index
+Perhaps the most straightforward index available to detect careless responses is the Longstring index, available via `longstring()`.
+It is defined as the longest consecutive string of identical responses given by a person. For example, imagine a person giving the following answers to a Likert-scale with 7 items:
+```{r}
+x <- c(3,4,4,4,4,4,3)
+print(x)
+```
+The longest string of identical responses would be "5", since the person gives the same answer ("4") five times in a row. 
+The logic behind the longstring index is simple: If a person gives the same answer consecutively over a long stretch of a survey, this can be taken as an indication of careless responding. In the literature, such a response type is often called "straightlining".
+
+Now, let us apply `longstring()` to our sample dataset.
+```{r}
+careless_long <- longstring(careless_dataset2)
+boxplot(careless_long, main = "Value of Longstring index for each person")
+```
+
+The boxplot shows that some observations clearly have very high Longstring values, indicating that they might be careless responders. The question of appropriate cut-off values for careless responding is a tricky question, and no general rule of thumb can be given. We will get to the question later.
+
+The `longstring()` function also comes with an additional variant that calculates the *average* length of consecutive identical responses - let us call this index Averagestring. Imagine a person giving the following answers to a Likert-scale with 10 items:
+```{r}
+x <- c(4,4,4,5,5,5,5,5,4,4)
+print(x)
+```
+The Longstring for this observation would be 5, and the Averagestring would be $\frac{3+5+2}{3} = 3.33$ . The Averagestring Index helps spotting persons who exercise a bit more effort than the classical "straightliner" - alternating their responses more often.
+```{r}
+careless_long <- longstring(careless_dataset2, avg = T)
+boxplot(careless_long$avg, main = "Value of Averagestring index for each observation")
+```
+
+## Intra-individual Response Variability
+
+The intra-individual response variability (IRV) is similiar in spirit to the Longstring index. It is defined as the "standard deviation of responses across a set of consecutive item responses for an individual" (Dunn et al. 2018). Consider this example of an individual with the following set of item responses:
+```{r}
+x <- c(4,5,4,5,4,5,4,5,4,5)
+print(x)
+```
+The individual alternates between responding with option 4 and option 5. Neither the Longstring nor the Averagestring would detect such a response pattern. The standard deviation across this set of responses might, however, because it is rather low:
+```{r}
+sd(x)
+```
+Hence, the purpose of the IRV is to detect such kinds of invariability that are hard to detect using Longstring.
+
+The IRV can be calculated by calling `irv()`. Dunn et al., 18 propose that the IRV also be calculated for subsets of the questionnaire in order to detect careless responding that occurs only for a part of the questionnaire. Rather than manually splitting the questionnaire and feeding it to the function, you can do this by calling `irv()` with the argument´s `split = TRUE` and `num.split = n`, where n is the number of subsets you want to split the dataset into. The function will try to split the dataset into subsets of equal lengths.
+
+```{r}
+careless_irv <- irv(careless_dataset2, split = TRUE, num.split = 4)
+head(careless_irv)
+```
+The function then returns both the IRV for the whole dataset and for each subset.
+
+
+## Psychometric Synonyms and Antonyms
+
+The Psychometric Synonyms index takes variable pairs (these should be items) that are highly correlated (e.g., $r > .60$), and in that sense psychometrically synonymous, and calculates a within-person correlation over these item pairs. The rationale behind this index is that pairs of items that are highly similiar over the population should also be similar for a single person.
+
+To create the index, the user has to set a sound critical value or cut-off value, above which a correlation between item pairs consistutes a pair of psychometric synonyms. The  function `psychsyn_critval()` assists here: It returns a list of all possible correlations between variables, ordered by magnitude.
+```{r}
+psychsyn_cor <- psychsyn_critval(careless_dataset2)
+head(psychsyn_cor)
+```
+There is no clear answer on how to set this critical value. A rule of thumb often proposed in the literature is $r > .60$.
+
+```{r}
+sum(psychsyn_cor$Freq > .60, na.rm = TRUE)
+```
+In our sample dataset, there are 31 item pairs given this rule of thumb, a good size for our next step. If the number of item pairs is too low, the resulting index will have a low validity. In such cases you might want to consider a different critical value, but this again can be detrimental to validity.
+
+Next, we call the function `psychsyn()` to calculate the psychometric synonyms index.
+
+```{r}
+example_psychsyn <- psychsyn(careless_dataset2, critval = .60)
+hist(example_psychsyn)
+```
+
+Note that the histogram reports observations whose correlations are clearly negative; these cases should be inspected more closely.
+
+Similarly, one can compute the Psychometric Antonyms index via `psychant()` or by calling `psychsyn()` with the argument `anto = TRUE`. Psychometric antonyms are item pairs which are correlated highly *negatively*. Otherwise, this index functions in the same way as the Psychometric Synonyms index.
+Finding psychometric antonyms is usually more tricky than finding psychometric synonyms, and often relies on reverse-worded items that correlate negatively with items from their scale.
+```{r}
+psychant_cor <- psychsyn_critval(careless_dataset2, anto = TRUE)
+head(psychant_cor)
+```
+In our sample dataset, there are only two item pairs that exceed a threshold of $r < -.60$. In this case, we would either need to justify using a different critical value or abstain from using psychological antonyms.
+
+##  Even-Odd Consistency Index
+The Even-Odd Consistency Index operates in the following manner:
+1. divides unidimensional scales into two halves using an even-odd split
+2. two scores, one for the even and one for the odd subscale, are then computed as the average response across subscale items
+3. a within-person correlation is computed based on the two sets of subscale scores for each scale (think of the even scores as the variable $x$, the odd scores as the variable $y$ of a correlation $r(x,y)$)
+4. the correlation is corrected for decreased length of the scale using the Spearman–Brown prophecy formula.
+
+If persons consistenly rate the items of a unidimensional scale in a similar manner, we can expect their score on the even-odd consistency index to be high; if they are inconsistent, we can expect their score to be closer to zero.
+
+This index is computed using the function `evenodd()`. In the function call, a vector of integers specifying the length of each scale in the dataset is needed. As stated in `?careless_dataset2`, our sample dataset includes 10 scales of 10 items each.
+```{r}
+careless_eo <- evenodd(careless_dataset2, factors = rep(10,10))
+hist(careless_eo)
+```
+
+## Mahalanobis Distance
+
+Mahalanobis Distance or simply Mahalanobis D is a method for multivariate outlier detection. Careless responding is just one reason why a person's set of answers to a survey may be considered an outlier. Mahalanobis D is thus not specifically adressed towards careless responding, but has been shown to be valuable in this area.
+Summarized shortly, Mahalanobis D measures the distance of a point (the set of responses from a person) to a distribution (usually the set of responses of all persons in a dataset). It is a multivariate generalization of the basic, univariate approach to outlier analysis where one looks at how many standard deviation a person is away from the mean on a single variable. If a person engages in careless responding, it is reasonable to expect that her responses will significantly deviate from the mean of the distribution of responses of others (given that most persons in a dataset are careful responders).
+Like in the univariate case, the closer to zero a person's value on Mahalanobis D is, the closer a person is to the mean of the distribution. A high value on Mahalanobis D, on the other hand, indicates a large deviation from the mean that needs further attention.
+Mahalanobis D can be calculated by calling `mahad()`. If no argument is passed, its output also includes a quantile-quantile (Q-Q) plot to help visually detect outliers.
+
+```{r}
+careless_mahad <- mahad_raw <- mahad(careless_dataset)
+```
+
+The Q-Q plot shows the quantiles of the empirical distribution of Mahalanobis $D^2$ in the dataset vs. the quantiles of the theoretical distribution of $X^2_{nvar}$. Given no outliers, one would expect that the quantiles match each other such that points remain close to the gray line. The plot shows that starting at roughly the 60th quantile, the empirical values of Mahalanobis $D^2$ start to deviate strongly from the line. These values call for further inspection.

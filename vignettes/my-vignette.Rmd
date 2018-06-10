@@ -133,13 +133,26 @@ Note that some scores are around $r_{within} = 0$ or even negative, although the
 
 ## Mahalanobis Distance
 
-Mahalanobis Distance or simply Mahalanobis D is a method for multivariate outlier detection. Careless responding is just one reason why a person's set of answers to a survey may make her an outlier. Mahalanobis D is thus not specifically adressed towards careless responding, but has been shown to be valuable for this problem.
-Summarized shortly, Mahalanobis D measures the distance of a point (the set of responses from a person) to a distribution (usually the set of responses of all persons in a dataset). It is a multivariate generalization of the basic, univariate approach to outlier analysis where one looks at how many standard deviation a person is away from the mean on a single variable. If a person engages in careless responding, it is reasonable to expect that her responses will significantly deviate from the mean of the distribution of responses of others (given that most persons in a dataset are careful responders).
-Like in the univariate case, the closer to zero a person's value on Mahalanobis D is, the closer a person is to the mean of the distribution. A high value on Mahalanobis D, on the other hand, indicates a large deviation from the mean that needs further attention.
-Mahalanobis D can be calculated by calling `mahad()`. If no argument is passed, its output also includes a quantile-quantile (Q-Q) plot to help visually detect outliers.
+Mahalanobis Distance or simply Mahalanobis $D^2$ is a method for multivariate outlier detection. Careless responding is just one reason why a person's set of answers to a survey may make her an outlier. Mahalanobis $D^2$ is thus not specifically adressed towards careless responding, but has been shown to be valuable for this problem.
+Summarized shortly, Mahalanobis $D^2$ measures the distance of a point (the set of responses from a person) to a distribution (usually the set of responses of all persons in a dataset). It is a multivariate generalization of the basic, univariate approach to outlier analysis where one looks at how many standard deviation a person is away from the mean on a single variable. If a person engages in careless responding, it is reasonable to expect that her responses will significantly deviate from the mean of the distribution of responses of others (given that most persons in a dataset are careful responders).
+Like in the univariate case, the closer to zero a person's value on Mahalanobis $D^2$ is, the closer a person is to the mean of the distribution. A high value on Mahalanobis $D^2$, on the other hand, indicates a large deviation from the mean that needs further attention.
+Mahalanobis $D^2$ can be calculated by calling `mahad()`. If no argument is passed, its output also includes a quantile-quantile (Q-Q) plot to help visually detect outliers.
 
 ```{r}
 careless_mahad <- mahad_raw <- mahad(careless_dataset)
 ```
 
 The Q-Q plot shows the quantiles of the empirical distribution of Mahalanobis $D^2$ in the dataset vs. the quantiles of the theoretical distribution of $X^2_{nvar}$. Given no outliers, one would expect that the quantiles match each other such that points remain close to the gray line. The plot shows that starting at roughly the 60th quantile, the empirical values of Mahalanobis $D^2$ start to deviate strongly from the line. These values call for further inspection.
+
+## Further Reading
+There is a growing literature on the topic of careless/insufficient effort responding. A detailed and relatively comprehensive overview of different methods is provided by **Curran (2016)**. The paper also includes recommendations on how to treat scales that contain reverse-worded items (an issue not discussed here). **Meade and Craig (2012)** compare the performance of different methods using real world and simulated data and make recommendations for study design and analysis.
+
+## References
+
+Curran, P. G. (2016). Methods for the detection of carelessly invalid responses in survey data. *Journal of Experimental Social Psychology, 66, 4–19*. https://doi.org/10.1016/j.jesp.2015.07.006
+
+Dunn, A. M., Heggestad, E. D., Shanock, L. R., & Theilgard, N. (2018). Intra-individual Response Variability as an Indicator of Insufficient Effort Responding: Comparison to Other Indicators and Relationships with Individual Differences. *Journal of Business and Psychology*, 33(1), 105–121. https://doi.org/10.1007/s10869-016-9479-0
+
+Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data. *Psychological Methods, 17(3)*, 437–455. https://doi.org/10.1037/a0028085
+
+

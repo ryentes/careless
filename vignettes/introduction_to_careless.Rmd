@@ -1,6 +1,6 @@
 ---
 title: "Introduction to careless"
-author: "Francisco Wilhelm & Richard D. Yentes"
+author: "Vignette written by Francisco Wilhelm & Richard D. Yentes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette  
 vignette: >

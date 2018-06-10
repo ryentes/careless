@@ -22,12 +22,12 @@ within-person correlation between the even and odd subscales over all the
 factors.
 }
 \examples{
-carelessEo <- evenodd(carelessDataset, rep(5,10))
-carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = TRUE)
+careless_eo <- evenodd(careless_dataset, rep(5,10))
+careless_eodiag <- evenodd(careless_dataset, rep(5,10), diag = TRUE)
 }
 \references{
 Johnson, J. A. (2005). Ascertaining the validity of individual protocols
-from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009
+from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}
 }
 \author{
 Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}

@@ -4,11 +4,7 @@
 \alias{psychsyn_critval}
 \title{Compute the correlations between all possible item pairs and order them by the magnitude of the correlation}
 \usage{
-<<<<<<< HEAD:man/psychsyn_critval.Rd
 psychsyn_critval(x, anto = FALSE)
-=======
-psychsynCritVal(x, anto = FALSE)
->>>>>>> master:man/psychsynCritVal.Rd
 }
 \arguments{
 \item{x}{a matrix of item responses.}
@@ -20,13 +16,8 @@ A function intended to help finding adequate critical values for \code{psychsyn}
 Takes a matrix of item responses and returns a data frame giving the correlations of all item pairs ordered by the magnitude of the correlation.
 }
 \examples{
-<<<<<<< HEAD:man/psychsyn_critval.Rd
 psychsyn_cor <- psychsyn_critval(careless_dataset)
 psychsyn_cor <- psychsyn_critval(careless_dataset, anto = TRUE)
-=======
-psychsynCor <- psychsynCritVal(carelessDataset)
-psychsynCor <- psychsynCritVal(carelessDataset, anto = TRUE)
->>>>>>> master:man/psychsynCritVal.Rd
 }
 \seealso{
 after determining an adequate critical value, continue with \code{\link{psychsyn}} and/or \code{\link{psychant}}

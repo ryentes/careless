@@ -24,15 +24,9 @@ Mahalanobis distance is calculated using the function \code{psych::outlier} of t
 package, an implementation which supports missing values.
 }
 \examples{
-<<<<<<< HEAD
 mahad_raw <- mahad(careless_dataset) #only the distances themselves
 mahad_flags <- mahad(careless_dataset, flag = TRUE) #additionally flag outliers
 mahad_flags <- mahad(careless_dataset, flag = TRUE, confidence = 0.999) #Apply a strict criterion
-=======
-mahadRaw <- mahaD(carelessDataset) #only the distances themselves
-mahadFlags <- mahaD(carelessDataset, flag = TRUE) #additionally flag outliers
-mahadFlags <- mahaD(carelessDataset, flag = TRUE, confidence = 0.999) #Apply a strict criterion
->>>>>>> master
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

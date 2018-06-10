@@ -26,7 +26,6 @@
 #' irv_total <- irv(careless_dataset)
 #'
 #' #calculate the irv over all items + calculate the irv for each quarter of the questionnaire
-<<<<<<< HEAD
 #' irv_split <- irv(careless_dataset, split = TRUE, num.split = 4)
 #' boxplot(irv_split$irv4) #produce a boxplot of the IRV for the fourth quarter
 
@@ -40,21 +39,6 @@ irv <- function(x, split = FALSE, num.split = 3) {
     for(k in 1:nrow(out_split)) {
       split_x_single <- split_x[[k]]
       out_split[k,] <- unlist(lapply(split_x_single, stats::sd), use.names = FALSE)
-=======
-#' irvSplit <- irv(carelessDataset, split = TRUE, numSplit = 4)
-#' boxplot(irvSplit$irv4) #produce a boxplot of the IRV for the fourth quarter
-
-irv <- function(x, split = FALSE, numSplit = 3) {
-  out <- apply(x, 1, stats::sd)
-  if(split == TRUE) {
-    chunk <- function(x,n) split(x, cut(seq_along(x), n, labels = FALSE))
-    splitX <- apply(x, 1, chunk, numSplit)
-    outSplit <- t(replicate(nrow(x), rep(NA, numSplit)))
-    colnames(outSplit) <- paste0("irv",1:numSplit)
-    for(k in 1:nrow(outSplit)) {
-      splitXSingle <- splitX[[k]]
-      outSplit[k,] <- unlist(lapply(splitXSingle, stats::sd), use.names = FALSE)
->>>>>>> master
     }
       out_split <- data.frame(out, out_split)
       colnames(out_split)[1] <- "irvTotal"

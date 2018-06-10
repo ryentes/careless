@@ -13,17 +13,10 @@
 #' from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}
 #' @export
 #' @examples
-<<<<<<< HEAD
 #' careless_long <- longstring(careless_dataset, avg = FALSE)
 #' careless_avg <- longstring(careless_dataset, avg = TRUE)
 #' boxplot(careless_avg$longstr) #produce a boxplot of the longstring index
 #' boxplot(careless_avg$avgstr)
-=======
-#' carelessLong <- longstring(carelessDataset, avg = FALSE)
-#' carelessAvg <- longstring(carelessDataset, avg = TRUE)
-#' boxplot(carelessAvg$longstr) #produce a boxplot of the longstring index
-#' boxplot(carelessAvg$avgstr)
->>>>>>> master
 
 longstring <- function(x, avg=FALSE) {
 

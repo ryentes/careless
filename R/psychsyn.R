@@ -24,7 +24,6 @@
 #' adequate critical value for the size of the correlation.
 #' @export
 #' @examples
-<<<<<<< HEAD
 #' synonyms <- psychsyn(careless_dataset, .60)
 #' antonyms <- psychsyn(careless_dataset2, .50, anto = TRUE)
 #' antonyms <- psychant(careless_dataset2, .50)
@@ -32,33 +31,15 @@
 #' #with diagnostics
 #' synonyms <- psychsyn(careless_dataset, .60, diag = TRUE)
 #' antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
-=======
-#' synonyms <- psychsyn(carelessDataset, .60)
-#' antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
-#' antonyms <- psychant(carelessDataset2, .50)
-#'
-#' #with diagnostics
-#' synonyms <- psychsyn(carelessDataset, .60, diag = TRUE)
-#' antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
->>>>>>> master
 
 psychsyn <- function(x, critval=.60, anto=FALSE, diag=FALSE) {
   x <- as.matrix(x)
-<<<<<<< HEAD
   item_pairs <- get_item_pairs(x, critval, anto)
   synonyms <- apply(x,1,syn_for_one, item_pairs)
   synonyms_df <- as.data.frame(aperm(synonyms))
   colnames(synonyms_df) <- c("numPairs", "cor")
   if(diag==TRUE) { return(synonyms_df) }
   else { return(synonyms_df$cor) }
-=======
-  itemPairs <- getItemPairs(x, critVal, anto)
-  synonyms <- apply(x,1,synForOne, itemPairs)
-  synonyms.df <- as.data.frame(aperm(synonyms))
-  colnames(synonyms.df) <- c("numPairs", "cor")
-  if(diag==TRUE) { return(synonyms.df) }
-  else { return(synonyms.df$cor) }
->>>>>>> master
 }
 
 # Helper function that identifies psychometric synonyms in a given dataset
@@ -73,24 +54,14 @@ get_item_pairs <- function(x, critval=.60, anto=FALSE) {
   # Identifying item pairs differs depending on whether the user wants
   # Psychometric Synonyms or Psychometric Antonyms
   if(anto==FALSE) {
-<<<<<<< HEAD
     item_pair_names <- correlations[which(correlations$Freq > critval, arr.ind=TRUE),c(1,2)]
     if(nrow(item_pair_names)==0) {
-=======
-    itemPairNames <- correlations[which(correlations$Freq > critVal, arr.ind=TRUE),c(1,2)]
-    if(nrow(itemPairNames)==0) {
->>>>>>> master
       stop("No Psychometric Synonyms found.")
     }
   }
   else if(anto==TRUE) {
-<<<<<<< HEAD
     item_pair_names <- correlations[which(correlations$Freq < -critval, arr.ind=TRUE),c(1,2)]
     if(nrow(item_pair_names)==0) {
-=======
-    itemPairNames <- correlations[which(correlations$Freq < -critVal, arr.ind=TRUE),c(1,2)]
-    if(nrow(itemPairNames)==0) {
->>>>>>> master
       stop("No Psychometric Antonyms found.")
     }
   }
@@ -104,13 +75,8 @@ syn_for_one <- function(x, item_pairs) {
   item_pairs_omit_na <- which(!(is.na(x[item_pairs[,1]]) | is.na(x[item_pairs[,2]])))
   sum_item_pairs <- length(item_pairs_omit_na)
 
-<<<<<<< HEAD
   if(sum_item_pairs > 2) {
       itemvalues <- cbind(as.numeric(x[as.numeric(item_pairs[,1])]), as.numeric(x[as.numeric(item_pairs[,2])]))
-=======
-  if(sumItemPairs > 2) {
-      itemvalues <- cbind(as.numeric(x[as.numeric(itemPairs[,1])]), as.numeric(x[as.numeric(itemPairs[,2])]))
->>>>>>> master
       synvalue <- suppressWarnings(stats::cor(itemvalues, use = "pairwise.complete.obs", method = "pearson")[1,2])
 
   } else {synvalue = NA}

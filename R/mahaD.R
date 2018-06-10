@@ -17,15 +17,9 @@
 #' @export
 #' @seealso \code{psych::outlier} on which this function is based.
 #' @examples
-<<<<<<< HEAD
 #' mahad_raw <- mahad(careless_dataset) #only the distances themselves
 #' mahad_flags <- mahad(careless_dataset, flag = TRUE) #additionally flag outliers
 #' mahad_flags <- mahad(careless_dataset, flag = TRUE, confidence = 0.999) #Apply a strict criterion
-=======
-#' mahadRaw <- mahaD(carelessDataset) #only the distances themselves
-#' mahadFlags <- mahaD(carelessDataset, flag = TRUE) #additionally flag outliers
-#' mahadFlags <- mahaD(carelessDataset, flag = TRUE, confidence = 0.999) #Apply a strict criterion
->>>>>>> master
 
 mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE) {
   raw <- as.numeric(psych::outlier(x, plot, bad = 0, na.rm = na.rm))

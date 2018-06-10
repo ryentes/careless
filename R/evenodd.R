@@ -16,13 +16,8 @@
 #' from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}
 #' @export
 #' @examples
-<<<<<<< HEAD
 #' careless_eo <- evenodd(careless_dataset, rep(5,10))
 #' careless_eodiag <- evenodd(careless_dataset, rep(5,10), diag = TRUE)
-=======
-#' carelessEo <- evenodd(carelessDataset, rep(5,10))
-#' carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = TRUE)
->>>>>>> master
 
 evenodd <- function(x, factors, diag = FALSE) {
   #initialize a result dataset
@@ -43,27 +38,16 @@ evenodd <- function(x, factors, diag = FALSE) {
       # Subset x with items for the current factor
       s <- x[i,start:end]
       ind <- seq(1:length(colnames(s)))
-<<<<<<< HEAD
       e_ind <- which(ind %% 2 == 0)
       o_ind <- which(ind %% 2 == 1)
       f[j,1] <- mean(t(s[e_ind]), na.rm = TRUE)
       f[j,2] <- mean(t(s[o_ind]), na.rm = TRUE)
-=======
-      eInd <- which(ind %% 2 == 0)
-      oInd <- which(ind %% 2 == 1)
-      f[j,1] <- mean(t(s[eInd]), na.rm = TRUE)
-      f[j,2] <- mean(t(s[oInd]), na.rm = TRUE)
->>>>>>> master
     }
 
     # Calculate within-person correlation between even and odd sub-scales
     # then apply the Spearman-Brown correction for split-half reliability
     # and store the result in the output vector.
-<<<<<<< HEAD
     eo_missing[i] <- sum(!is.na(apply(f, 1, sum))) #number of even/odd pairs for which no comparison can be computed because of NAs
-=======
-    eoMissing[i] <- sum(!is.na(apply(f, 1, sum))) #number of even/odd pairs for which no comparison can be computed because of NAs
->>>>>>> master
     tmp <- stats::cor(f[,1], f[,2], use ="pairwise.complete.obs")
     tmp <- (2*tmp)/(1+tmp)
     if(!is.na(tmp) && tmp < -1) tmp <- -1
@@ -71,9 +55,5 @@ evenodd <- function(x, factors, diag = FALSE) {
     rm(f)
   }
   if(diag == FALSE) {return(eo)}
-<<<<<<< HEAD
   else {return(data.frame(eo, eo_missing))}
-=======
-  else {return(data.frame(eo, eoMissing))}
->>>>>>> master
 }

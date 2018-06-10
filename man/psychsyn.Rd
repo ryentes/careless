@@ -28,7 +28,6 @@ Alternatively computes the psychometric antonym score which is a
 variant that uses item pairs that are highly \emph{negatively} correlated.
 }
 \examples{
-<<<<<<< HEAD
 synonyms <- psychsyn(careless_dataset, .60)
 antonyms <- psychsyn(careless_dataset2, .50, anto = TRUE)
 antonyms <- psychant(careless_dataset2, .50)
@@ -36,15 +35,6 @@ antonyms <- psychant(careless_dataset2, .50)
 #with diagnostics
 synonyms <- psychsyn(careless_dataset, .60, diag = TRUE)
 antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
-=======
-synonyms <- psychsyn(carelessDataset, .60)
-antonyms <- psychsyn(carelessDataset2, .50, anto=TRUE)
-antonyms <- psychant(carelessDataset2, .50)
-
-#with diagnostics
-synonyms <- psychsyn(carelessDataset, .60, diag = TRUE)
-antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
->>>>>>> master
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

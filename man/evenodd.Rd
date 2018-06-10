@@ -22,8 +22,13 @@ within-person correlation between the even and odd subscales over all the
 factors.
 }
 \examples{
+<<<<<<< HEAD
 careless_eo <- evenodd(careless_dataset, rep(5,10))
 careless_eodiag <- evenodd(careless_dataset, rep(5,10), diag = TRUE)
+=======
+carelessEo <- evenodd(carelessDataset, rep(5,10))
+carelessEoDiag <- evenodd(carelessDataset, rep(5,10), diag = TRUE)
+>>>>>>> master
 }
 \references{
 Johnson, J. A. (2005). Ascertaining the validity of individual protocols

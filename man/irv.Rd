@@ -4,7 +4,11 @@
 \alias{irv}
 \title{Calculates the intra-individual response variability (IRV)}
 \usage{
+<<<<<<< HEAD
 irv(x, split = FALSE, num.split = 3)
+=======
+irv(x, split = FALSE, numSplit = 3)
+>>>>>>> master
 }
 \arguments{
 \item{x}{a matrix of data (e.g. survey responses)}
@@ -26,8 +30,13 @@ Marjanovic et al. (2015) propose to mark persons with \emph{high} IRV scores - r
 irv_total <- irv(careless_dataset)
 
 #calculate the irv over all items + calculate the irv for each quarter of the questionnaire
+<<<<<<< HEAD
 irv_split <- irv(careless_dataset, split = TRUE, num.split = 4)
 boxplot(irv_split$irv4) #produce a boxplot of the IRV for the fourth quarter
+=======
+irvSplit <- irv(carelessDataset, split = TRUE, numSplit = 4)
+boxplot(irvSplit$irv4) #produce a boxplot of the IRV for the fourth quarter
+>>>>>>> master
 }
 \references{
 Dunn, A. M., Heggestad, E. D., Shanock, L. R., & Theilgard, N. (2018).

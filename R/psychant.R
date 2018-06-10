@@ -11,8 +11,13 @@
 #' @seealso \code{\link{psychsyn}} for the main function, \code{\link{psychsyn_critval}} for a helper that allows to set an
 #' adequate critical value for the size of the correlation.
 #' @examples
+<<<<<<< HEAD
 #' antonyms <- psychant(careless_dataset2, .50)
 #' antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
+=======
+#' antonyms <- psychant(carelessDataset2, .50)
+#' antonyms <- psychant(carelessDataset2, .50, diag = TRUE)
+>>>>>>> master
 
 psychant <- function(x, critval= -.60, diag=FALSE) {
   psychsyn(x, critval, anto = TRUE, diag)

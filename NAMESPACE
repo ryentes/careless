@@ -3,7 +3,12 @@
 export(evenodd)
 export(irv)
 export(longstring)
+<<<<<<< HEAD
 export(mahad)
+=======
+export(mahaD)
+export(outlier)
+>>>>>>> master
 export(psychant)
 export(psychsyn)
 export(psychsyn_critval)

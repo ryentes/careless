@@ -9,10 +9,10 @@
 #' @export
 #' @seealso after determining an adequate critical value, continue with \code{\link{psychsyn}} and/or \code{\link{psychant}}
 #' @examples
-#' psychsynCor <- psychsynCritVal(carelessDataset)
-#' psychsynCor <- psychsynCritVal(carelessDataset, anto = TRUE)
+#' psychsyn_cor <- psychsyn_critval(careless_dataset)
+#' psychsyn_cor <- psychsyn_critval(careless_dataset, anto = TRUE)
 
-psychsynCritVal <- function(x, anto = FALSE) {
+psychsyn_critval <- function(x, anto = FALSE) {
   correlations <- stats::cor(x, use = "pairwise.complete.obs")
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))

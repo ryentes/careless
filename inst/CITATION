@@ -9,5 +9,5 @@ citEntry(entry = "Manual",
 				 										 as.person("Francisco Wilhelm")),
 				 year = year,
 				 note = vers,
-				 textVersion = paste("Yentes R.D., & Wilhelm, F. (", year, "). careless: Procedures for computing indices of careless responding.", note, ".", sep = "")
+				 textVersion = paste("Yentes R.D., & Wilhelm, F. (", year, "). careless: Procedures for computing indices of careless responding.", vers, ".", sep = "")
 )

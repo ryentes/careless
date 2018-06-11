@@ -13,7 +13,7 @@ Careless or insufficient effort responding in surveys, i.e. responding to items 
 
 ## Current Version
 
-Current version is 1.1.0
+Current version is 1.1.1
 
 ## Installing from source
 

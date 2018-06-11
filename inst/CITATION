@@ -1,5 +1,5 @@
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
+year <- "2018"
+note <- "R package version 1.1.1"
 bibentry(bibtype = "Manual",
 	 title = "careless: Procedures for computing indices of careless responding",
 	 authors = c(person(c("Richard", "Dean"), "Yentes"),

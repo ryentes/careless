@@ -1,10 +1,13 @@
-year <- "2018"
-note <- "R package version 1.1.1"
-bibentry(bibtype = "Manual",
-	 title = "careless: Procedures for computing indices of careless responding",
-	 authors = c(person(c("Richard", "Dean"), "Yentes"),
-	 						 person("Francisco", "Wilhelm")),
-	 year = year,
-	 note=note,
-	 url = "https://github.com/ryentes/careless")
-textVersion = paste0("Yentes R.D., & Wilhelm, F. (", year, "). careless: Procedures for computing indices of careless responding.", note, ".")
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citHeader("To cite careless in publication use:")
+
+citEntry(entry = "Manual",
+				 title = "careless: Procedures for computing indices of careless responding",
+				 author = personList(as.person("Richard D. Yentes"),
+				 										 as.person("Francisco Wilhelm")),
+				 year = year,
+				 note = vers,
+				 textVersion = paste("Yentes R.D., & Wilhelm, F. (", year, "). careless: Procedures for computing indices of careless responding.", note, ".", sep = "")
+)

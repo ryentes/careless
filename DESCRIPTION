@@ -1,18 +1,13 @@
 Package: careless
 Type: Package
-Title: Procedures for computing indices of careless responding
-Version: 1.1.0
+Title: Procedures for Computing Indices of Careless Responding
+Version: 1.1.1
 Date: 2018-11-05
 Authors@R: c(
-            person("Richard", "Yentes" , email = "rdyentes@ncsu.edu", role = c("aut", "cre")),
+            person("Richard", "Yentes" , email = "rdyentes@ncsu.edu", role = c("cre", "aut")),
             person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut")))
-Description: Careless or insufficient effort responding in surveys, i.e. responding to items without regard to their content, 
-            is a common occurence in surveys. These types of responses constitute significant problems for data quality 
-            leading to distortions in data analysis and hypothesis testing, such as spurious correlations. 
-            The R package careless provides solutions designed to detect such careless / insufficient effort responses
-            by allowing easy calculation of indices proposed in the literature. 
-            It currently supports the calculation of Longstring, Even-Odd Consistency, Psychometric Synonyms/Antonyms, 
-            Mahalanobis Distance, and Intra-individual Response Variability (also termed Inter-item Standard Deviation).
+Description: When taking online surveys, participants sometimes respond to items without regard to their content.
+    These types of responses, referred to as careless or insufficient effort responding, constitute significant problems for data quality, leading to distortions in data analysis and hypothesis testing, such as spurious correlations. The R package careless provides solutions designed to detect such careless / insufficient effort responsesby allowing easy calculation of indices proposed in the literature. It currently supports the calculation of Longstring, Even-Odd Consistency, Psychometric Synonyms/Antonyms, Mahalanobis Distance, and Intra-individual Response Variability (also termed Inter-item Standard Deviation).
 License: MIT + file LICENSE
 Imports:
     psych
@@ -20,7 +15,9 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Suggests:
-    testthat
+    testthat,
+    knitr
+VignetteBuilder: knitr
 Maintainer: Richard Yentes <rdyentes@ncsu.edu>
-Author: Richard Yentes [cre, aut]
+Author: Richard Yentes [cre, aut],
   Francisco Wilhelm [aut]

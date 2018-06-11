@@ -16,6 +16,8 @@ LazyData: true
 RoxygenNote: 6.0.1
 Suggests:
     testthat
+    knitr
+VignetteBuilder: knitr
 Maintainer: Richard Yentes <rdyentes@ncsu.edu>
 Author: Richard Yentes [cre, aut],
   Francisco Wilhelm [aut]

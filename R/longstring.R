@@ -10,26 +10,26 @@
 #' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Johnson, J. A. (2005). Ascertaining the validity of individual protocols
-#' from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009
+#' from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}
 #' @export
 #' @examples
-#' carelessLong <- longstring(carelessDataset, avg = FALSE)
-#' carelessAvg <- longstring(carelessDataset, avg = TRUE)
-#' boxplot(carelessAvg$longstr) #produce a boxplot of the longstring index
-#' boxplot(carelessAvg$avgstr)
+#' careless_long <- longstring(careless_dataset, avg = FALSE)
+#' careless_avg <- longstring(careless_dataset, avg = TRUE)
+#' boxplot(careless_avg$longstr) #produce a boxplot of the longstring index
+#' boxplot(careless_avg$avgstr)
 
 longstring <- function(x, avg=FALSE) {
 
   # subfunction that calculates the length of consecutive identical responses
-  rlestring <- function(x) {
-    rleList <- rle(x)
-    longstr <- max(rleList$lengths)
-    avgstr <- mean(rleList$lengths)
+  rle_string <- function(x) {
+    rle_list <- rle(x)
+    longstr <- max(rle_list$lengths)
+    avgstr <- mean(rle_list$lengths)
     return(cbind(longstr, avgstr))
   }
 
   # apply the subfunctions to each row (case, subject)
-  output <- apply(x, 1, rlestring)
+  output <- apply(x, 1, rle_string)
   output <- data.frame(t(output))
   colnames(output) <- (c('longstr','avgstr'))
 

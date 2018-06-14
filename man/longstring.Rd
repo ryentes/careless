@@ -18,14 +18,14 @@ For each observation, the length of the maximum uninterrupted string of
 identical responses is returned. Additionally, can return the average length of uninterrupted string of identical responses.
 }
 \examples{
-carelessLong <- longstring(carelessDataset, avg = FALSE)
-carelessAvg <- longstring(carelessDataset, avg = TRUE)
-boxplot(carelessAvg$longstr) #produce a boxplot of the longstring index
-boxplot(carelessAvg$avgstr)
+careless_long <- longstring(careless_dataset, avg = FALSE)
+careless_avg <- longstring(careless_dataset, avg = TRUE)
+boxplot(careless_avg$longstr) #produce a boxplot of the longstring index
+boxplot(careless_avg$avgstr)
 }
 \references{
 Johnson, J. A. (2005). Ascertaining the validity of individual protocols
-from web-based personality inventories. Journal of Research in Personality, 39, 103-129. doi:10.1016/j.jrp.2004.09.009
+from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}
 }
 \author{
 Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}

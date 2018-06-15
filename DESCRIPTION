@@ -6,6 +6,7 @@ Date: 2018-11-05
 Authors@R: c(
             person("Richard", "Yentes" , email = "rdyentes@ncsu.edu", role = c("cre", "aut")),
             person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut")))
+Maintainer: Richard Yentes <rdyentes@ncsu.edu>
 Description: When taking online surveys, participants sometimes respond to items without regard to their content.
     These types of responses, referred to as careless or insufficient effort responding, constitute significant problems for data quality, leading to distortions in data analysis and hypothesis testing, such as spurious correlations. The R package 'careless' provides solutions designed to detect such careless / insufficient effort responses by allowing easy calculation of indices proposed in the literature. It currently supports the calculation of longstring, even-odd consistency, psychometric synonyms/antonyms, Mahalanobis distance, and intra-individual response variability (also termed inter-item standard deviation). For a review of these methods, see Curran (2016) <doi:10.1016/j.jesp.2015.07.006>.
 License: MIT + file LICENSE
@@ -13,14 +14,10 @@ URL: https://github.com/ryentes/careless/
 BugReports: https://github.com/ryentes/careless/issues
 Imports:
     psych
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.0.1
 Suggests:
     testthat,
     knitr
+Encoding: UTF-8
+LazyData: true
 VignetteBuilder: knitr
-Maintainer: Richard Yentes <rdyentes@ncsu.edu>
-Author: Richard Yentes [cre, aut],
-  Francisco Wilhelm [aut]
-VignetteBuilder: knitr
+RoxygenNote: 6.0.1

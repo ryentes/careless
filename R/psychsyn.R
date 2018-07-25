@@ -77,9 +77,22 @@ syn_for_one <- function(x, item_pairs) {
 
   if(sum_item_pairs > 2) {
       itemvalues <- cbind(as.numeric(x[as.numeric(item_pairs[,1])]), as.numeric(x[as.numeric(item_pairs[,2])]))
-      synvalue <- suppressWarnings(stats::cor(itemvalues, use = "pairwise.complete.obs", method = "pearson")[1,2])
-
+      
+      resample_itemvalues <- function(x) {
+        t(apply(x, 1, sample, 2, replace = F))
+      } # resamples itemvalues by randomly switching the "x" and "y" position of itempairs.
+      
+      psychsyn_cor <- function(x) {
+        suppressWarnings(stats::cor(x, use = "pairwise.complete.obs", method = "pearson")[1,2])
+      } 
+      
+      itemvalues_resampled <- replicate(100, resample_itemvalues(itemvalues), simplify = FALSE) #does the resampling n = 100 times
+      
+      synvalue_resampled <- sapply(itemvalues_resampled, psychsyn_cor) #applies the psychsyn cor over all the n resamples
+      
+      synvalues <- mean(synvalue_resampled) # computes the mean of the n resamples
+      
   } else {synvalue = NA}
 
-  return(c(sum_item_pairs, synvalue))
+  return(c(sum_item_pairs, synvalues))
   }

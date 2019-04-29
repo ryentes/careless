@@ -30,7 +30,7 @@
 #' boxplot(irv_split$irv4) #produce a boxplot of the IRV for the fourth quarter
 
 irv <- function(x, split = FALSE, num.split = 3) {
-  out <- apply(x, 1, stats::sd)
+  out <- apply(x, 1, stats::sd, na.rm = TRUE)
   if(split == TRUE) {
     chunk <- function(x,n) split(x, cut(seq_along(x), n, labels = FALSE))
     split_x <- apply(x, 1, chunk, num.split)
@@ -38,7 +38,7 @@ irv <- function(x, split = FALSE, num.split = 3) {
     colnames(out_split) <- paste0("irv",1:num.split)
     for(k in 1:nrow(out_split)) {
       split_x_single <- split_x[[k]]
-      out_split[k,] <- unlist(lapply(split_x_single, stats::sd), use.names = FALSE)
+      out_split[k,] <- unlist(lapply(split_x_single, stats::sd, na.rm = TRUE), use.names = FALSE)
     }
       out_split <- data.frame(out, out_split)
       colnames(out_split)[1] <- "irvTotal"

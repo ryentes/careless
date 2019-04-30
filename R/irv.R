@@ -16,9 +16,9 @@
 #' Intra-individual Response Variability as an Indicator of Insufficient Effort Responding:
 #' Comparison to Other Indicators and Relationships with Individual Differences.
 #' \emph{Journal of Business and Psychology, 33(1)}, 105-121. \doi{10.1007/s10869-016-9479-0}
-#' 
-#' Marjanovic, Z., Holden, R., Struthers, W., Cribbie, R., & Greenglass, E. (2015). 
-#' The inter-item standard deviation (ISD): An index that discriminates between conscientious and random responders. 
+#'
+#' Marjanovic, Z., Holden, R., Struthers, W., Cribbie, R., & Greenglass, E. (2015).
+#' The inter-item standard deviation (ISD): An index that discriminates between conscientious and random responders.
 #' \emph{Personality and Individual Differences}, 84, 79-83. \doi{10.1016/j.paid.2014.08.021}
 #' @export
 #' @examples

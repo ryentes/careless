@@ -78,12 +78,12 @@ syn_for_one <- function(x, item_pairs, resample_na) {
 
   if(sum_item_pairs > 2) {
     itemvalues <- cbind(as.numeric(x[as.numeric(item_pairs[,1])]), as.numeric(x[as.numeric(item_pairs[,2])]))
-    
+
     # helper that calculates within-person correlation
     psychsyn_cor <- function(x) {
       suppressWarnings(stats::cor(x, use = "pairwise.complete.obs", method = "pearson")[1,2])
-    } 
-    
+    }
+
     # if resample_na == TRUE, re-calculate psychsyn should a result return NA
     if(resample_na == TRUE) {
       counter <- 1
@@ -94,17 +94,17 @@ syn_for_one <- function(x, item_pairs, resample_na) {
         counter = counter+1
       }
       }
-    
-      
+
+
     # resample_itemvalues <- function(x) {
     #   t(apply(x, 1, sample, 2, replace = F))
     # } # resamples itemvalues by randomly switching the "x" and "y" position of itempairs.
-    # 
+    #
     # itemvalues_resampled <- replicate(times_resample, resample_itemvalues(itemvalues), simplify = FALSE) #does the resampling n = 100 times
     # synvalue_resampled <- sapply(itemvalues_resampled, psychsyn_cor) #applies the psychsyn cor over all the n resamples
     # synvalues <- mean(synvalue_resampled) # computes the mean of the n resamples
-    
+
   } else {synvalue <- NA}
-  
+
   return(c(sum_item_pairs, synvalue))
 }

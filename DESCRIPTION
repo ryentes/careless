@@ -1,8 +1,8 @@
 Package: careless
 Type: Package
 Title: Procedures for Computing Indices of Careless Responding
-Version: 1.1.1
-Date: 2018-15-06
+Version: 1.1.3
+Date: 2018-06-19
 Authors@R: c(
             person("Richard", "Yentes" , email = "rdyentes@ncsu.edu", role = c("cre", "aut")),
             person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut")))

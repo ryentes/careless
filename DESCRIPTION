@@ -16,7 +16,6 @@ Imports:
     psych
 Suggests:
     testthat,
-    texlive-fonts-extra,
     knitr
 Encoding: UTF-8
 LazyData: true

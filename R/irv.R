@@ -8,7 +8,8 @@
 #' Marjanovic et al. (2015) propose to mark persons with \emph{high} IRV scores - reflecting highly random responses (see References).
 #'
 #' @param x a matrix of data (e.g. survey responses)
-#' @param split boolean indicating whether to additionally calculate the IRV on subsets of columns (of equal length).
+#' @param na.rm logical indicating whether to calculate the IRV for a person with missing values.
+#' @param split logical indicating whether to additionally calculate the IRV on subsets of columns (of equal length).
 #' @param num.split the number of subsets the data is to be split in.
 #' @author Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
@@ -16,9 +17,9 @@
 #' Intra-individual Response Variability as an Indicator of Insufficient Effort Responding:
 #' Comparison to Other Indicators and Relationships with Individual Differences.
 #' \emph{Journal of Business and Psychology, 33(1)}, 105-121. \doi{10.1007/s10869-016-9479-0}
-#' 
-#' Marjanovic, Z., Holden, R., Struthers, W., Cribbie, R., & Greenglass, E. (2015). 
-#' The inter-item standard deviation (ISD): An index that discriminates between conscientious and random responders. 
+#'
+#' Marjanovic, Z., Holden, R., Struthers, W., Cribbie, R., & Greenglass, E. (2015).
+#' The inter-item standard deviation (ISD): An index that discriminates between conscientious and random responders.
 #' \emph{Personality and Individual Differences}, 84, 79-83. \doi{10.1016/j.paid.2014.08.021}
 #' @export
 #' @examples
@@ -29,8 +30,9 @@
 #' irv_split <- irv(careless_dataset, split = TRUE, num.split = 4)
 #' boxplot(irv_split$irv4) #produce a boxplot of the IRV for the fourth quarter
 
-irv <- function(x, split = FALSE, num.split = 3) {
-  out <- apply(x, 1, stats::sd)
+irv <- function(x, na.rm = TRUE, split = FALSE, num.split = 3) {
+  out <- apply(x, 1, stats::sd, na.rm = na.rm)
+  
   if(split == TRUE) {
     chunk <- function(x,n) split(x, cut(seq_along(x), n, labels = FALSE))
     split_x <- apply(x, 1, chunk, num.split)
@@ -38,11 +40,11 @@ irv <- function(x, split = FALSE, num.split = 3) {
     colnames(out_split) <- paste0("irv",1:num.split)
     for(k in 1:nrow(out_split)) {
       split_x_single <- split_x[[k]]
-      out_split[k,] <- unlist(lapply(split_x_single, stats::sd), use.names = FALSE)
+      out_split[k,] <- unlist(lapply(split_x_single, stats::sd, na.rm = na.rm), use.names = FALSE)
     }
       out_split <- data.frame(out, out_split)
       colnames(out_split)[1] <- "irvTotal"
-      return(out_split)} else {
+      return(out_split)} else { #split subsection end
       return(out)
     }
 }

@@ -9,7 +9,7 @@ longstring(x, avg = FALSE)
 \arguments{
 \item{x}{a matrix of data (e.g. item responses)}
 
-\item{avg}{a boolean indicating whether to additionally return the average length of identical consecutive responses}
+\item{avg}{logical indicating whether to additionally return the average length of identical consecutive responses}
 }
 \description{
 Takes a matrix of item responses and, beginning with the second column (i.e., second item)

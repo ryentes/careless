@@ -4,12 +4,14 @@
 \alias{irv}
 \title{Calculates the intra-individual response variability (IRV)}
 \usage{
-irv(x, split = FALSE, num.split = 3)
+irv(x, na.rm = TRUE, split = FALSE, num.split = 3)
 }
 \arguments{
 \item{x}{a matrix of data (e.g. survey responses)}
 
-\item{split}{boolean indicating whether to additionally calculate the IRV on subsets of columns (of equal length).}
+\item{na.rm}{logical indicating whether to calculate the IRV for a person with missing values.}
+
+\item{split}{logical indicating whether to additionally calculate the IRV on subsets of columns (of equal length).}
 
 \item{num.split}{the number of subsets the data is to be split in.}
 }
@@ -35,8 +37,8 @@ Intra-individual Response Variability as an Indicator of Insufficient Effort Res
 Comparison to Other Indicators and Relationships with Individual Differences.
 \emph{Journal of Business and Psychology, 33(1)}, 105-121. \doi{10.1007/s10869-016-9479-0}
 
-Marjanovic, Z., Holden, R., Struthers, W., Cribbie, R., & Greenglass, E. (2015). 
-The inter-item standard deviation (ISD): An index that discriminates between conscientious and random responders. 
+Marjanovic, Z., Holden, R., Struthers, W., Cribbie, R., & Greenglass, E. (2015).
+The inter-item standard deviation (ISD): An index that discriminates between conscientious and random responders.
 \emph{Personality and Individual Differences}, 84, 79-83. \doi{10.1016/j.paid.2014.08.021}
 }
 \author{

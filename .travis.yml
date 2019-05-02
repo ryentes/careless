@@ -8,11 +8,5 @@ os:
   - osx
   
 before-install:
-  - sudo wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-  - sudo tar -xzf install-tl-unx.tar.gz
-  - sudo cd install-tl-unx
-  - sudo rm -Rf /usr/local/texlive
-  - sudo rm ~/.texlive2019
-  - ./install-tl
-  - sudo tlmgr install texlive-fonts-extra
-  - sudo tlmgr install titling framed inconsolata
+  - brew cask install mactex
+  - tlmgr install latex-recommended latex-extra fonts-recommended fonts-extra

@@ -8,6 +8,8 @@ os:
   - osx
   
 before-install:
-  - tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+  - sudo tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+  - sudo brew rm curl
+  - sudo brew install curl --with-openssl
   - sudo tlmgr install texlive-fonts-extra
   - sudo tlmgr install titling framed inconsolata

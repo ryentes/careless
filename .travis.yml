@@ -8,8 +8,10 @@ os:
   - osx
   
 before-install:
-  - sudo tlmgr install mactex
+  - export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+  - echo $PATH
   - sudo brew rm curl
   - sudo brew install curl --with-openssl
+  - sudo tlmgr update --all
   - sudo tlmgr install texlive-fonts-extra
   - sudo tlmgr install titling framed inconsolata

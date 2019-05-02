@@ -1,7 +1,11 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Online Vignettes}
--->
+---
+title: "Custom expectations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Custom expectations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 Careless Vignette Files
 =======================

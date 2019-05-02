@@ -8,11 +8,3 @@ cache: packages
 os:
   - linux
   - osx
-  
-before-install:
-  - sudo wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-  - brew cask install mactex-no-gui
-  - which tex
-  - sudo tlmgr install latex-recommended latex-extra fonts-recommended fonts-extra
-  - sudo tlmgr install texlive-fonts-extra
-  - sudo tlmgr install titling framed inconsolata

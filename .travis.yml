@@ -8,7 +8,7 @@ os:
   - osx
   
 before-install:
-  - sudo tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+  - sudo tlmgr install mactex
   - sudo brew rm curl
   - sudo brew install curl --with-openssl
   - sudo tlmgr install texlive-fonts-extra

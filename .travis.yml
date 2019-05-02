@@ -3,7 +3,6 @@ r:
   - oldrel
   - release
   - devel
-cache: packages
 
 os:
   - linux

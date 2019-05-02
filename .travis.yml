@@ -2,6 +2,8 @@ language: r
 r:
   - oldrel
   - release
+  - devel
+cache: packages
 
 os:
   - linux
@@ -9,12 +11,8 @@ os:
   
 before-install:
   - sudo wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-  - sudo tar -xzf install-tl-unx.tar.gz
-  - sudo cd install-tl-unx
-  - sudo rm -Rf /usr/local/texlive
-  - sudo rm ~/.texlive2019
-  - sudo ./install-tl
-  - brew cask install mactex
+  - brew cask install mactex-no-gui
+  - which tex
   - sudo tlmgr install latex-recommended latex-extra fonts-recommended fonts-extra
   - sudo tlmgr install texlive-fonts-extra
   - sudo tlmgr install titling framed inconsolata

@@ -8,10 +8,11 @@ os:
   - osx
   
 before-install:
-  - export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
-  - echo $PATH
-  - sudo brew rm curl
-  - sudo brew install curl --with-openssl
-  - sudo tlmgr update --all
+  - sudo wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+  - sudo tar -xzf install-tl-unx.tar.gz
+  - sudo cd install-tl-unx
+  - sudo rm -Rf /usr/local/texlive
+  - sudo rm ~/.texlive2019
+  - ./install-tl
   - sudo tlmgr install texlive-fonts-extra
   - sudo tlmgr install titling framed inconsolata

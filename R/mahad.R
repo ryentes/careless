@@ -28,9 +28,9 @@ mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
     }
   #remove rows with all NA and issue warning
   complete.na <- apply(x, 1, function(y) { all(is.na(y)) } )
-  if(any(complete.na) { 
+  if(any(complete.na)) {
     warning("Some cases contain only NA values. The Mahalanobis distance will be calculated using available cases.",
-            call. = FALSE)) }
+            call. = FALSE) }
   x_filtered <- x[!complete.na,]
   
   maha_data <- as.numeric(psych::outlier(x_filtered, plot, bad = 0, na.rm = na.rm))

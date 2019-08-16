@@ -4,3 +4,7 @@
 temp.RData
 R/.DS_Store
 .RData
+<<<<<<< dev
+=======
+vignettes/*.html
+>>>>>>> dev

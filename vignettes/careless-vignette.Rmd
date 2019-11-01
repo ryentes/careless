@@ -1,9 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Online Vignettes}
--->
+---
+title: "Careless vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Careless Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 Careless Vignette Files
 =======================
 
-An introduction to careless, including examples and vignettes can be found at [this link](https://ryentes.com/careless/intro.html)
+An introduction to careless, including examples and vignettes can be found at https://ryentes.com/careless/intro.html

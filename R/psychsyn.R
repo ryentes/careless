@@ -35,19 +35,24 @@
 psychsyn <- function(x, critval=.60, anto=FALSE, diag=FALSE) {
   x <- as.matrix(x)
   item_pairs <- get_item_pairs(x, critval, anto)
-  resample_na <- TRUE #sets resampling in case of encountering NA
+  
+  if(any(is.na(x))) { 
+    resample_na <- TRUE #sets resampling in case of encountering NA
+  } else { 
+    resample_na = FALSE}
+  
   synonyms <- apply(x,1,syn_for_one, item_pairs, resample_na)
   synonyms_df <- as.data.frame(aperm(synonyms))
   colnames(synonyms_df) <- c("numPairs", "cor")
+  
   if(diag==TRUE) { return(synonyms_df) }
   else { return(synonyms_df$cor) }
 }
 
 # Helper function that identifies psychometric synonyms in a given dataset
 get_item_pairs <- function(x, critval=.60, anto=FALSE) {
-  x <- as.matrix(x)
   critval <- abs(critval) #Dummy Proofing
-
+  
   correlations <- stats::cor(x, use = "pairwise.complete.obs")
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))
@@ -75,7 +80,7 @@ get_item_pairs <- function(x, critval=.60, anto=FALSE) {
 syn_for_one <- function(x, item_pairs, resample_na) {
   item_pairs_omit_na <- which(!(is.na(x[item_pairs[,1]]) | is.na(x[item_pairs[,2]])))
   sum_item_pairs <- length(item_pairs_omit_na)
-
+  #only execute if more than two item pairs
   if(sum_item_pairs > 2) {
     itemvalues <- cbind(as.numeric(x[as.numeric(item_pairs[,1])]), as.numeric(x[as.numeric(item_pairs[,2])]))
 
@@ -93,18 +98,11 @@ syn_for_one <- function(x, item_pairs, resample_na) {
         synvalue <- psychsyn_cor(itemvalues)
         counter = counter+1
       }
+    } else {
+      synvalue <- psychsyn_cor(itemvalues) # executes if resample_na == FALSE
       }
 
-
-    # resample_itemvalues <- function(x) {
-    #   t(apply(x, 1, sample, 2, replace = F))
-    # } # resamples itemvalues by randomly switching the "x" and "y" position of itempairs.
-    #
-    # itemvalues_resampled <- replicate(times_resample, resample_itemvalues(itemvalues), simplify = FALSE) #does the resampling n = 100 times
-    # synvalue_resampled <- sapply(itemvalues_resampled, psychsyn_cor) #applies the psychsyn cor over all the n resamples
-    # synvalues <- mean(synvalue_resampled) # computes the mean of the n resamples
-
-  } else {synvalue <- NA}
+  } else {synvalue <- NA} # executes if insufficient item pairs
 
   return(c(sum_item_pairs, synvalue))
 }

@@ -54,6 +54,9 @@ evenodd <- function(x, factors, diag = FALSE) {
     eo[i] <- tmp
     rm(f)
   }
+  
+  eo = 0 - eo
+  
   if(diag == FALSE) {return(eo)}
   else {return(data.frame(eo, eo_missing))}
 }

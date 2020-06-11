@@ -4,7 +4,9 @@
 \name{careless_dataset}
 \alias{careless_dataset}
 \title{Simulated dataset with insufficient effort responses.}
-\format{A data frame with 200 observations (rows) and 50 variables (columns).}
+\format{
+A data frame with 200 observations (rows) and 50 variables (columns).
+}
 \usage{
 careless_dataset
 }

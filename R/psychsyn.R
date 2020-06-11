@@ -15,6 +15,7 @@
 #' @param anto determines whether psychometric anonyms are returned instead of
 #' psychometric synonyms. Defaults to \code{FALSE}
 #' @param diag additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
+#' @param na_resample if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.
 #' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
@@ -32,14 +33,9 @@
 #' synonyms <- psychsyn(careless_dataset, .60, diag = TRUE)
 #' antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
 
-psychsyn <- function(x, critval=.60, anto=FALSE, diag=FALSE) {
+psychsyn <- function(x, critval=.60, anto=FALSE, diag=FALSE, resample_na=TRUE) {
   x <- as.matrix(x)
   item_pairs <- get_item_pairs(x, critval, anto)
-  
-  if(any(is.na(x))) { 
-    resample_na <- TRUE #sets resampling in case of encountering NA
-  } else { 
-    resample_na = FALSE}
   
   synonyms <- apply(x,1,syn_for_one, item_pairs, resample_na)
   synonyms_df <- as.data.frame(aperm(synonyms))

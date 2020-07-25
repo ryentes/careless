@@ -1,7 +1,14 @@
 language: r
+sudo: false
+install:
+  - R -e 'install.packages("devtools")'
+  - R -e 'install.packages("knitr")'
+  - R -e 'devtools::install_deps(dep = T)'
+cache: packages
 r:
   - oldrel
   - release
+  - devel
 
 os:
   - linux

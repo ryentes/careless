@@ -1,8 +1,0 @@
-language: r
-r:
-  - release
-  - devel
-
-os:
-  - linux
-  - osx

@@ -2,7 +2,7 @@ Package: careless
 Type: Package
 Title: Procedures for Computing Indices of Careless Responding
 Version: 1.2.0
-Date: 2020-06-10
+Date: 2020-07-25
 Authors@R: c(
             person("Richard", "Yentes" , email = "rdyentes@ncsu.edu", role = c("cre", "aut")),
             person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut")))
@@ -20,4 +20,4 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

@@ -17,7 +17,7 @@ psychometric synonyms. Defaults to \code{FALSE}}
 
 \item{diag}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}
 
-\item{na_resample}{if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.}
+\item{resample_na}{if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.}
 }
 \description{
 Takes a matrix of item responses and identifies item pairs that are highly

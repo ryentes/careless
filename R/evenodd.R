@@ -24,10 +24,13 @@ evenodd <- function(x, factors, diag = FALSE) {
 
   if(length(factors) == 1) {
     stop("You have called even-odd with only a single factor. \n The even-odd method requires multiple factors to work correctly.",
-            call. = TRUE) }
+            call. = FALSE) }
+  if(sum(factors) > ncol(x)) {
+    stop("The number of items specified by 'factors' exceeds the number of columns in 'x'.",
+            call. = FALSE) }
   if(sum(factors) != ncol(x)) {
     warning("The number of items specified by 'factors' does not match the number of columns in 'x'. \n Please check if this is what you want.",
-            call. = TRUE) }
+            call. = FALSE) }
 
   # initalize empty list for persons holding the persons even scores and odd scores
   eo_vals <- vector("list", nrow(x))

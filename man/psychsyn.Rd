@@ -4,7 +4,7 @@
 \alias{psychsyn}
 \title{Computes the psychometric synonym/antonym score}
 \usage{
-psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE)
+psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE, resample_na = TRUE)
 }
 \arguments{
 \item{x}{is a matrix of item responses}
@@ -16,6 +16,8 @@ in order for them to be considered psychometric synonyms. Defaults to .60}
 psychometric synonyms. Defaults to \code{FALSE}}
 
 \item{diag}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}
+
+\item{resample_na}{if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.}
 }
 \description{
 Takes a matrix of item responses and identifies item pairs that are highly

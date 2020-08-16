@@ -21,8 +21,24 @@
 
 evenodd <- function(x, factors, diag = FALSE) {
   #initialize a result dataset
-  eo <- vector(length = nrow(x), mode = "numeric")
-  eo_missing <- vector(length = nrow(x), mode = "numeric")
+  warning("Computation of even-odd has changed for consistency of interpretation
+          with other indices. This change occurred in version 1.2.0. A higher 
+          score now indicates a greater likelihood of careless responding. If 
+          you have previously written code to cut score based on the output of 
+          this function, you should revise that code accordingly.")
+
+  if(length(factors) == 1) {
+    stop("You have called even-odd with only a single factor. \n The even-odd method requires multiple factors to work correctly.",
+            call. = FALSE) }
+  if(sum(factors) > ncol(x)) {
+    stop("The number of items specified by 'factors' exceeds the number of columns in 'x'.",
+            call. = FALSE) }
+  if(sum(factors) != ncol(x)) {
+    warning("The number of items specified by 'factors' does not match the number of columns in 'x'. \n Please check if this is what you want.",
+            call. = FALSE) }
+
+  # initalize empty list for persons holding the persons even scores and odd scores
+  eo_vals <- vector("list", nrow(x))
 
   # Loop through each Person
   for(i in 1:nrow(x)) {
@@ -43,17 +59,35 @@ evenodd <- function(x, factors, diag = FALSE) {
       f[j,1] <- mean(t(s[e_ind]), na.rm = TRUE)
       f[j,2] <- mean(t(s[o_ind]), na.rm = TRUE)
     }
-
-    # Calculate within-person correlation between even and odd sub-scales
-    # then apply the Spearman-Brown correction for split-half reliability
-    # and store the result in the output vector.
-    eo_missing[i] <- sum(!is.na(apply(f, 1, sum))) #number of even/odd pairs for which no comparison can be computed because of NAs
-    tmp <- stats::cor(f[,1], f[,2], use ="pairwise.complete.obs")
-    tmp <- (2*tmp)/(1+tmp)
-    if(!is.na(tmp) && tmp < -1) tmp <- -1
-    eo[i] <- tmp
-    rm(f)
+    # assign the even and odd values to eo_vals
+    eo_vals[[i]] <- f
   }
-  if(diag == FALSE) {return(eo)}
-  else {return(data.frame(eo, eo_missing))}
+
+
+  #calculate number of even/odd pairs for which no comparison can be computed because of NAs
+  eo_missing <- lapply(eo_vals, function(i) sum(!is.na(apply(i, 1, sum))))
+
+  # scan for persons for which no even-odd can be calculated when all values are same, leading to
+  # a correlation of NA because there is no variance/standard deviation.
+  eo_sdzero <-  lapply(eo_vals, function(i) apply(i, 2, stats::sd))
+  eo_sdzero <- sapply(eo_sdzero, function(i) any(i == 0))
+  if(any(eo_sdzero)) warning("One or more observations have zero variance in even and/or odd values. \nThis results in NA values for these observations.\nIncluding more factors may alleviate this issue.",
+                             call. = FALSE)
+
+  # Calculate within-person correlation between even and odd sub-scales
+  # then apply the Spearman-Brown correction for split-half reliability
+  # and store the result in the output vector.
+  eo_cor <- sapply(eo_vals, function(f) {
+    # suppressWarnings for standard deviation 0 which happens when each value-pairs is same
+    val <- suppressWarnings(stats::cor(f[, 1], f[, 2], use = "pairwise.complete.obs"))
+    val <- (2 * val) / (1 + val) #split-half
+    if (!is.na(val) && val < -1) val <- -1
+    return(val)
+  })
+
+  # transform eo  such that higher scores are indicating carelessness
+  eo_cor = 0 - eo_cor
+
+  if(diag == FALSE) {return(eo_cor)}
+  else {return(data.frame(eo_cor, eo_missing))}
 }

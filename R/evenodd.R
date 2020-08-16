@@ -21,6 +21,11 @@
 
 evenodd <- function(x, factors, diag = FALSE) {
   #initialize a result dataset
+  warning("Computation of even-odd has changed for consistency of interpretation
+          with other indices. This change occurred in version 1.2.0. A higher 
+          score now indicates a greater likelihood of careless responding. If 
+          you have previously written code to cut score based on the output of 
+          this function, you should revise that code accordingly.")
 
   if(length(factors) == 1) {
     stop("You have called even-odd with only a single factor. \n The even-odd method requires multiple factors to work correctly.",
@@ -64,7 +69,7 @@ evenodd <- function(x, factors, diag = FALSE) {
 
   # scan for persons for which no even-odd can be calculated when all values are same, leading to
   # a correlation of NA because there is no variance/standard deviation.
-  eo_sdzero <-  lapply(eo_vals, function(i) apply(i, 2, sd))
+  eo_sdzero <-  lapply(eo_vals, function(i) apply(i, 2, stats::sd))
   eo_sdzero <- sapply(eo_sdzero, function(i) any(i == 0))
   if(any(eo_sdzero)) warning("One or more observations have zero variance in even and/or odd values. \nThis results in NA values for these observations.\nIncluding more factors may alleviate this issue.",
                              call. = FALSE)

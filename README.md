@@ -1,7 +1,5 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br/>
-Status master branch: [![Build Status](https://travis-ci.org/ryentes/careless.svg?branch=master)](https://travis-ci.org/ryentes/careless)<br/>
-Status dev branch: [![Build Status](https://travis-ci.org/ryentes/careless.svg?branch=dev)](https://travis-ci.org/ryentes/careless)
 
 # careless
 

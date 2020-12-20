@@ -1,7 +1,7 @@
+<!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
-<!-- badges: start -->
-  [![Travis build status](https://travis-ci.com/ryentes/careless.svg?branch=master)](https://travis-ci.com/ryentes/careless)
+[![Travis build status](https://travis-ci.com/ryentes/careless.svg?branch=master)](https://travis-ci.com/ryentes/careless)
 <!-- badges: end -->
 
 <br/>

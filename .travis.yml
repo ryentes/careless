@@ -4,3 +4,13 @@ language: R
 cache: packages
 warnings_are_errors: true
 sudo: required
+
+r:
+ - release
+ - devel
+ 
+
+r_binary_packages:
+  - r-cran-knitr
+  - r-cran-testthat
+  - r-cran-psych

@@ -11,6 +11,6 @@ r:
  
 
 r_binary_packages:
-  - r-cran-knitr
-  - r-cran-testthat
-  - r-cran-psych
+  - knitr
+  - testthat
+  - psych

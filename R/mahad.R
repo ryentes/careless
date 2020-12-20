@@ -10,7 +10,7 @@
 #' @param flag Flag potential outliers using the confidence level specified in parameter \code{confidence}
 #' @param confidence The desired confidence level of the result
 #' @param na.rm Should missing data be deleted
-#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
 #' \emph{Psychological Methods, 17(3)}, 437-455. \doi{10.1037/a0028085}

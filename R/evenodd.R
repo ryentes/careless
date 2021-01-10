@@ -10,7 +10,7 @@
 #' factor in the dataset
 #' @param diag optionally returns a column with the number of available (i.e., non-missing) even/odd pairs per observation.
 #' Useful for datasets with many missing values.
-#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Johnson, J. A. (2005). Ascertaining the validity of individual protocols
 #' from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}
@@ -70,8 +70,8 @@ evenodd <- function(x, factors, diag = FALSE) {
   # scan for persons for which no even-odd can be calculated when all values are same, leading to
   # a correlation of NA because there is no variance/standard deviation.
   eo_sdzero <-  lapply(eo_vals, function(i) apply(i, 2, stats::sd))
-  eo_sdzero <- sapply(eo_sdzero, function(i) any(i == 0))
-  if(any(eo_sdzero)) warning("One or more observations have zero variance in even and/or odd values. \nThis results in NA values for these observations.\nIncluding more factors may alleviate this issue.",
+  eo_sdzero <- sapply(eo_sdzero, function(i) any(i == 0, na.rm = TRUE))
+  if(any(eo_sdzero, na.rm = TRUE)) warning("One or more observations have zero variance in even and/or odd values. \nThis results in NA values for these observations.\nIncluding more factors may alleviate this issue.",
                              call. = FALSE)
 
   # Calculate within-person correlation between even and odd sub-scales

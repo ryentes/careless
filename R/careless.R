@@ -44,7 +44,7 @@
 #'   }
 #'   The sample datasets differ in the types of careless responding simulated.
 #' 
-#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' 
 #' 
 #' @docType package

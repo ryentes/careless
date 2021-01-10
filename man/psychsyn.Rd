@@ -48,5 +48,5 @@ Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey da
 adequate critical value for the size of the correlation.
 }
 \author{
-Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }

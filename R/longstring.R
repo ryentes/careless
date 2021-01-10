@@ -7,7 +7,7 @@
 #'
 #' @param x a matrix of data (e.g. item responses)
 #' @param avg logical indicating whether to additionally return the average length of identical consecutive responses
-#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Johnson, J. A. (2005). Ascertaining the validity of individual protocols
 #' from web-based personality inventories. \emph{Journal of Research in Personality, 39}, 103-129. \doi{10.1016/j.jrp.2004.09.009}

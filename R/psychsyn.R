@@ -16,7 +16,7 @@
 #' psychometric synonyms. Defaults to \code{FALSE}
 #' @param diag additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
 #' @param resample_na if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.
-#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
 #' \emph{Psychological Methods, 17(3)}, 437-455. \doi{10.1037/a0028085}

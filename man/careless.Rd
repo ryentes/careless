@@ -57,5 +57,5 @@ for the psychometric synonyms/antonyms index.
 }
 
 \author{
-Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }

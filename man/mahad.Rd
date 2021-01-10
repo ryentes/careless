@@ -36,5 +36,5 @@ Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey da
 \code{psych::outlier} on which this function is based.
 }
 \author{
-Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+Richard Yentes \email{rdyentes@ncsu.edu}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 }

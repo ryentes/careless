@@ -1,10 +1,5 @@
-<!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-[![Travis build status](https://travis-ci.com/ryentes/careless.svg?branch=master)](https://travis-ci.com/ryentes/careless)
-<!-- badges: end -->
-
-<br/>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br/>
 
 # careless
 
@@ -17,12 +12,6 @@ Careless or insufficient effort responding in surveys, i.e. responding to items 
 ## Current Version
 
 Current version is 1.2.0
-
-### Version Notes
-* even-odd consistency score: updated interpretation of even-odd to maintain consistency with other indices. It is now coded such that higher scores indicate higher levels of careless responding. Before, higher scores indicated lower levels of careless responding. This makes the even-odd index consistent with the other indices.
-* even-odd consistency score : expanded error and warning messages to provide more information to the user.
-* Intra-individual response variability (IRV): now handles NA values.
-* psychometric synonym/antonym score: now handles NA values better, and is faster due to implementation of vectorization. The function now uses resampling to adress issues arising from NA values.
 
 ## Installing from source
 

@@ -12,7 +12,7 @@ psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE, resample_na = TRUE)
 \item{critval}{is the minimum magnitude of the correlation between two items
 in order for them to be considered psychometric synonyms. Defaults to .60}
 
-\item{anto}{determines whether psychometric anonyms are returned instead of
+\item{anto}{determines whether psychometric antonyms are returned instead of
 psychometric synonyms. Defaults to \code{FALSE}}
 
 \item{diag}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}

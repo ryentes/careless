@@ -12,7 +12,7 @@
 #' @param x is a matrix of item responses
 #' @param critval is the minimum magnitude of the correlation between two items
 #' in order for them to be considered psychometric synonyms. Defaults to .60
-#' @param anto determines whether psychometric anonyms are returned instead of
+#' @param anto determines whether psychometric antonyms are returned instead of
 #' psychometric synonyms. Defaults to \code{FALSE}
 #' @param diag additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
 #' @param resample_na if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.

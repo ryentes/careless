@@ -2,7 +2,7 @@ Package: careless
 Type: Package
 Title: Procedures for Computing Indices of Careless Responding
 Version: 1.2.0
-Date: 2020-07-25
+Date: 2021-03-07
 Authors@R: c(
             person("Richard", "Yentes" , email = "ryentes@gmail.com", role = c("cre", "aut")),
             person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut")))
@@ -16,7 +16,8 @@ Imports:
     psych
 Suggests:
     testthat,
-    knitr
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr

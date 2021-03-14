@@ -32,15 +32,15 @@ mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
     warning("Some cases contain only NA values. The Mahalanobis distance will be calculated using available cases.",
             call. = FALSE) }
   x_filtered <- x[!complete.na,]
-  
+
   maha_data <- as.numeric(psych::outlier(x_filtered, plot, bad = 0, na.rm = na.rm))
-  maha_data_merge <- rep_len(NA, nrow(x_filtered))
-  maha_data_merge[!complete.na] <- maha_data
-  
+  d_sq <- rep_len(NA, nrow(x_filtered))
+  d_sq[!complete.na] <- maha_data
+
   if(flag == TRUE) {
-    cut <- stats::qchisq(confidence, length(maha_data))
-    flagged <- (maha_data_merge > cut)
-    return(data.frame(maha_data_merge, flagged))
+    cut <- stats::qchisq(confidence, ncol(x))
+    flagged <- (d_sq > cut)
+    return(data.frame(d_sq = d_sq, flagged = flagged))
   }
-  else{ return(maha_data_merge) }
+  else{ return(d_sq) }
 }

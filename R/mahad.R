@@ -34,13 +34,13 @@ mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
   x_filtered <- x[!complete.na,]
 
   maha_data <- as.numeric(psych::outlier(x_filtered, plot, bad = 0, na.rm = na.rm))
-  maha_data_merge <- rep_len(NA, nrow(x_filtered))
-  maha_data_merge[!complete.na] <- maha_data
+  d_sq <- rep_len(NA, nrow(x_filtered))
+  d_sq[!complete.na] <- maha_data
 
   if(flag == TRUE) {
     cut <- stats::qchisq(confidence, ncol(x))
     flagged <- (maha_data_merge > cut)
-    return(data.frame(cut = maha_data_merge, flagged = flagged))
+    return(data.frame(d_sq = d_sq, flagged = flagged))
   }
-  else{ return(maha_data_merge) }
+  else{ return(d_sq) }
 }

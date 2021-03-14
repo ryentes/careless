@@ -10,4 +10,4 @@ vignette: >
 Careless Vignette Files
 =======================
 
-An introduction to careless, including examples and vignettes can be found at https://ryentes.com/careless/intro.html
+An introduction to careless, including examples and vignettes can be found at https://www.ryentes.com/careless/intro.html

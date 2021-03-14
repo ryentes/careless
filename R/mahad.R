@@ -39,7 +39,7 @@ mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
 
   if(flag == TRUE) {
     cut <- stats::qchisq(confidence, ncol(x))
-    flagged <- (maha_data_merge > cut)
+    flagged <- (d_sq > cut)
     return(data.frame(d_sq = d_sq, flagged = flagged))
   }
   else{ return(d_sq) }

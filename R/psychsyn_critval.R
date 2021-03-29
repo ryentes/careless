@@ -23,5 +23,7 @@ psychsyn_critval <- function(x, anto = FALSE) {
   else {
   correlations <- correlations[order(correlations$Freq, decreasing = FALSE),]
   }
+  names(correlations) <- c("Var1","Var2","Correlation")
+  
   return(correlations)
 }

@@ -4,7 +4,7 @@
 \alias{psychsyn}
 \title{Computes the psychometric synonym/antonym score}
 \usage{
-psychsyn(x, critval = 0.6, anto = FALSE, diag = FALSE, resample_na = TRUE)
+psychsyn(x, critval = 0.6, anto = FALSE, npairs = FALSE, resample_na = TRUE)
 }
 \arguments{
 \item{x}{is a matrix of item responses}
@@ -15,7 +15,7 @@ in order for them to be considered psychometric synonyms. Defaults to .60}
 \item{anto}{determines whether psychometric antonyms are returned instead of
 psychometric synonyms. Defaults to \code{FALSE}}
 
-\item{diag}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}
+\item{npairs}{additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.}
 
 \item{resample_na}{if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.}
 }
@@ -34,9 +34,9 @@ synonyms <- psychsyn(careless_dataset, .60)
 antonyms <- psychsyn(careless_dataset2, .50, anto = TRUE)
 antonyms <- psychant(careless_dataset2, .50)
 
-#with diagnostics
-synonyms <- psychsyn(careless_dataset, .60, diag = TRUE)
-antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
+#with npairsnostics
+synonyms <- psychsyn(careless_dataset, .60, npairs = TRUE)
+antonyms <- psychant(careless_dataset2, .50, npairs = TRUE)
 }
 \references{
 Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.

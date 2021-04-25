@@ -14,7 +14,7 @@
 #' in order for them to be considered psychometric synonyms. Defaults to .60
 #' @param anto determines whether psychometric antonyms are returned instead of
 #' psychometric synonyms. Defaults to \code{FALSE}
-#' @param diag additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
+#' @param npairs additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
 #' @param resample_na if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.
 #' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
@@ -30,75 +30,79 @@
 #' antonyms <- psychant(careless_dataset2, .50)
 #'
 #' #with diagnostics
-#' synonyms <- psychsyn(careless_dataset, .60, diag = TRUE)
-#' antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
+#' synonyms <- psychsyn(careless_dataset, .60, npairs = TRUE)
+#' antonyms <- psychant(careless_dataset2, .50, npairs = TRUE)
 
-psychsyn <- function(x, critval=.60, anto=FALSE, diag=FALSE, resample_na=TRUE) {
-  x <- as.matrix(x)
+psychsyn <- function(x, critval=.60, anto=FALSE, npairs=FALSE, resample_na=TRUE) {
+  x <- as.matrix(x) #Comment: why this?
+
+  # Helper function that identifies psychometric synonyms in a given dataset
+  get_item_pairs <- function(x, critval=.60, anto=FALSE) {
+    critval <- abs(critval) #Dummy Proofing
+
+    correlations <- stats::cor(x, use = "pairwise.complete.obs")
+    correlations[upper.tri(correlations, diag=TRUE)] <- NA
+    correlations <- as.data.frame(as.table(correlations))
+
+    # Identifying item pairs differs depending on whether the user wants
+    # Psychometric Synonyms or Psychometric Antonyms
+    if(anto==FALSE) {
+      item_pair_names <- correlations[which(correlations$Freq > critval, arr.ind=TRUE),c(1,2)]
+      if(nrow(item_pair_names)==0) {
+        stop("No Psychometric Synonyms found.")
+      }
+    }
+    else if(anto==TRUE) {
+      item_pair_names <- correlations[which(correlations$Freq < -critval, arr.ind=TRUE),c(1,2)]
+      if(nrow(item_pair_names)==0) {
+        stop("No Psychometric Antonyms found.")
+      }
+    }
+
+    matches <- item_pair_names
+    return(matches)
+  }
+  # get the item pairs above (below for anto = TRUE) the threshold
   item_pairs <- get_item_pairs(x, critval, anto)
-  
+
+  # Helper function to calculate the within person correlation for a single individual
+  syn_for_one <- function(x, item_pairs, resample_na) {
+    item_pairs_omit_na <- which(!(is.na(x[item_pairs[,1]]) | is.na(x[item_pairs[,2]])))
+    sum_item_pairs <- length(item_pairs_omit_na)
+    #only execute if more than two item pairs
+    if(sum_item_pairs > 2) {
+      itemvalues <- cbind(as.numeric(x[as.numeric(item_pairs[,1])]), as.numeric(x[as.numeric(item_pairs[,2])]))
+
+      # helper that calculates within-person correlation
+      psychsyn_cor <- function(x) {
+        suppressWarnings(stats::cor(x, use = "pairwise.complete.obs", method = "pearson")[1,2])
+      }
+
+      # if resample_na == TRUE, re-calculate psychsyn should a result return NA
+      if(resample_na == TRUE) {
+        counter <- 1
+        synvalue <- psychsyn_cor(itemvalues)
+        while(counter <= 10 & is.na(synvalue)) {
+          itemvalues <- t(apply(itemvalues, 1, sample, 2, replace = F))
+          synvalue <- psychsyn_cor(itemvalues)
+          counter = counter+1
+        }
+      } else {
+        synvalue <- psychsyn_cor(itemvalues) # executes if resample_na == FALSE
+      }
+
+    } else {synvalue <- NA} # executes if insufficient item pairs
+
+    return(c(sum_item_pairs, synvalue))
+  }
+
+  # calculate the within-person synonym cor for each person
   synonyms <- apply(x,1,syn_for_one, item_pairs, resample_na)
-  synonyms_df <- as.data.frame(aperm(synonyms))
+  synonyms_df <- as.data.frame(t(synonyms)) # recast as data.frame with one row per observation
   colnames(synonyms_df) <- c("numPairs", "cor")
-  
-  if(diag==TRUE) { return(synonyms_df) }
+  # return number of available pairs if requested
+  if(npairs==TRUE) { return(synonyms_df) }
   else { return(synonyms_df$cor) }
 }
 
-# Helper function that identifies psychometric synonyms in a given dataset
-get_item_pairs <- function(x, critval=.60, anto=FALSE) {
-  critval <- abs(critval) #Dummy Proofing
-  
-  correlations <- stats::cor(x, use = "pairwise.complete.obs")
-  correlations[upper.tri(correlations, diag=TRUE)] <- NA
-  correlations <- as.data.frame(as.table(correlations))
 
-  # Identifying item pairs differs depending on whether the user wants
-  # Psychometric Synonyms or Psychometric Antonyms
-  if(anto==FALSE) {
-    item_pair_names <- correlations[which(correlations$Freq > critval, arr.ind=TRUE),c(1,2)]
-    if(nrow(item_pair_names)==0) {
-      stop("No Psychometric Synonyms found.")
-    }
-  }
-  else if(anto==TRUE) {
-    item_pair_names <- correlations[which(correlations$Freq < -critval, arr.ind=TRUE),c(1,2)]
-    if(nrow(item_pair_names)==0) {
-      stop("No Psychometric Antonyms found.")
-    }
-  }
-
-  matches <- item_pair_names
-  return(matches)
-}
-
-# Helper function to calculate the within person correlation for a single individual
-syn_for_one <- function(x, item_pairs, resample_na) {
-  item_pairs_omit_na <- which(!(is.na(x[item_pairs[,1]]) | is.na(x[item_pairs[,2]])))
-  sum_item_pairs <- length(item_pairs_omit_na)
-  #only execute if more than two item pairs
-  if(sum_item_pairs > 2) {
-    itemvalues <- cbind(as.numeric(x[as.numeric(item_pairs[,1])]), as.numeric(x[as.numeric(item_pairs[,2])]))
-
-    # helper that calculates within-person correlation
-    psychsyn_cor <- function(x) {
-      suppressWarnings(stats::cor(x, use = "pairwise.complete.obs", method = "pearson")[1,2])
-    }
-
-    # if resample_na == TRUE, re-calculate psychsyn should a result return NA
-    if(resample_na == TRUE) {
-      counter <- 1
-      synvalue <- psychsyn_cor(itemvalues)
-      while(counter <= 10 & is.na(synvalue)) {
-        itemvalues <- t(apply(itemvalues, 1, sample, 2, replace = F))
-        synvalue <- psychsyn_cor(itemvalues)
-        counter = counter+1
-      }
-    } else {
-      synvalue <- psychsyn_cor(itemvalues) # executes if resample_na == FALSE
-      }
-
-  } else {synvalue <- NA} # executes if insufficient item pairs
-
-  return(c(sum_item_pairs, synvalue))
-}

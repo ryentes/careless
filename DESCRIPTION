@@ -15,10 +15,11 @@ BugReports: https://github.com/ryentes/careless/issues
 Imports:
     psych
 Suggests:
-    testthat,
+    testthat (>= 3.0.0),
     knitr,
     rmarkdown
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
+Config/testthat/edition: 3

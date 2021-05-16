@@ -1,27 +1,32 @@
-context("Mahalanobis distance")
-
-# create mahaD results
+# Equality of mahalanobis distance for careless and the other packages
 mahad_psych <- psych::outlier(careless_dataset, plot= FALSE)
 names(mahad_psych) <- NULL
 mahad_stats <- stats::mahalanobis(careless_dataset,  colMeans(careless_dataset), var(careless_dataset))
-
-test_that("Equality of mahalanobis distance for psych and stats package implementations", {
-  expect_equal(mahad_psych, mahad_stats)
-})
-
 mahad_careless <- mahad(careless_dataset, plot = FALSE)
 
-# with NA
-careless_dataset_na <- careless_dataset
-careless_dataset_na[c(5:8),] <- NA #entire observation NA
-careless_dataset_na[1,3] <- NA #single value of obs is NA
-mahad_careless_na <- mahad(careless_dataset_na, plot = FALSE)
-
-mahad_psych_na <- psych::outlier(careless_dataset_na, plot= FALSE)
 test_that("Equality of mahalanobis distance for careless and the other packages", {
   expect_equal(mahad_careless, mahad_stats)
   expect_equal(mahad_careless, mahad_psych)
-  # expect_equal(mahad_careless_na, mahad_psych_na) # we assign NA, whereas psych assigns 0 to cases with complete NA
+})
+
+# compare NA handling
+careless_dataset_na <- careless_dataset
+careless_dataset_na[c(5:8),] <- NA #entire observation N
+careless_dataset_na[1,3] <- NA #single value of obs is NA
+mahad_careless_na <- mahad(careless_dataset_na, plot = FALSE)
+mahad_psych_na <- psych::outlier(careless_dataset_na, plot= FALSE)
+
+# expect_equal(mahad_careless_na, mahad_psych_na) # we assign NA, whereas psych assigns 0 to cases with complete NA
+
+# NA handling with some but not all NA
+careless_dataset_na <- careless_dataset
+careless_dataset_na[1,3] <- NA #single value of obs is NA
+mahad_careless_na <- mahad(careless_dataset_na, plot = FALSE)
+mahad_psych_na <- psych::outlier(careless_dataset_na, plot= FALSE)
+names(mahad_psych_na) <- NULL
+
+test_that("Equality of mahalanobis distance for careless and psych with some (but not all) NA values for an obs.", {
+  expect_equal(mahad_careless_na, mahad_psych_na)
 })
 
 # flagging of outliers based on multivariate MahaD scores compared
@@ -33,3 +38,10 @@ flagged <- (mahad_careless_flag$d_sq > cut)
 test_that("Outliers are flagged correctly based on chi-square", {
   expect_equal(mahad_careless_flag$flagged, flagged)
 })
+
+# compare plots - should be done visually.
+tmp <- mahad(careless_dataset, plot = TRUE, flag = FALSE, confidence = .95)
+# careless_plot <- recordPlot()
+tmp <- psych::outlier(careless_dataset, plot = TRUE)
+# psych_plot <- recordPlot()
+

@@ -1,5 +1,3 @@
-context("test-longstring.R")
-
 fname <- system.file("testdata", "lonstring-test-data.csv", package="careless")
 ls.test.data <- read.csv(fname, header=T)
 

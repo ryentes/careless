@@ -41,13 +41,19 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
     warning("diag argument has been renamed to n_pairs and has been deprecated as of version x.x.x, please use the n_pairs argument instead.")
     n_pairs <- diag
   }
-  # Helper function that identifies psychometric synonyms in a given dataset
-  get_item_pairs <- function(x, critval=.60, anto=FALSE) {
-    critval <- abs(critval) #Dummy Proofing
 
+# Helper function that identifies psychometric synonyms in a given dataset
+get_item_pairs <- function(x, critval=.60, anto=FALSE) {
+  critval <- abs(critval) #Dummy Proofing
+  
+  if(any(is.na(x))) {
     correlations <- stats::cor(x, use = "pairwise.complete.obs")
-    correlations[upper.tri(correlations, diag=TRUE)] <- NA
-    correlations <- as.data.frame(as.table(correlations)) # converts matrix of correlations to a long dataframe with columns Var1, Var2, Freq for correlation size
+  } else {
+    correlations <- stats::cor(x, use = "everything")
+  }
+  
+  correlations[upper.tri(correlations, diag=TRUE)] <- NA
+  correlations <- as.data.frame(as.table(correlations))  # converts matrix of correlations to a long dataframe with columns Var1, Var2, Freq for correlation size
     
     # Identifying item pairs differs depending on whether the user wants
     # Psychometric Synonyms or Psychometric Antonyms
@@ -80,10 +86,14 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
     if(sum_item_pairs > 2) {
       itemvalues <- data.frame(pair_x  = x[item_pairs[,1]], pair_y = x[item_pairs[,2]])
 
-      # helper that calculates within-person correlation
-      psychsyn_cor <- function(x) {
-        suppressWarnings(stats::cor(x, use = "pairwise.complete.obs", method = "pearson")[1,2])
+    # helper that calculates within-person correlation
+    psychsyn_cor <- function(x) {
+      if(any(is.na(x))) {
+        suppressWarnings(stats::cor(x, use = "pairwise.complete.obs")[1,2])
+      } else {
+        suppressWarnings(stats::cor(x, use = "everything")[1,2])
       }
+    }
 
       # if resample_na == TRUE, re-calculate psychsyn should a result return NA
       if(resample_na == TRUE) {

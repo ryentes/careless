@@ -31,37 +31,52 @@ mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
   if(any(complete.na)) {
     warning("Some cases contain only NA values. The Mahalanobis distance will be calculated using available cases.",
             call. = FALSE) }
+  
   x_filtered <- x[!complete.na,]
-
-  maha_data <- mahalanobis(x_filtered, center = colMeans(x_filtered), cov = cov(x_filtered))
-  d_sq <- rep_len(NA, nrow(x_filtered))
-  d_sq[!complete.na] <- maha_data
   
-  cut <- stats::qchisq(confidence, ncol(x))
-  flagged <- (d_sq > cut)
+  if(any(is.na(x_filtered))) {
+    maha_data <- as.numeric(psych::outlier(x_filtered, plot, bad = 0, na.rm = na.rm))
+    d_sq      <- rep_len(NA, nrow(x_filtered))
+    d_sq[!complete.na] <- maha_data
+    
+    cut     <- stats::qchisq(confidence, ncol(x))
+    flagged <- (d_sq > cut)
+    
+  } else {
+    maha_data <- mahalanobis(x_filtered, center = colMeans(x_filtered), cov = cov(x_filtered))
   
-  if (plot) {
-    plot_data <- data.frame(row     = seq_len(length(d_sq)),
-                            d_sq    = d_sq, 
-                            flagged = flagged)
-
-    plot_data <- plot_data[order(plot_data$d_sq, decreasing = TRUE),]
-
-    qqplot(x     = qchisq(ppoints(nrow(x)), df = ncol(x)),
-           y     = plot_data$d_sq,
-           main  = paste("Q-Q plot of Mahalanobis Distance",
-                         "versus Quantiles of Chi-Square"), 
-           xlab  = "Quantiles of Chi-Square", 
-           ylab  = "Mahalanobis Distance",
-           pch   = 16,
-           col   = rgb(0, .4, .6, .5))
-    abline(0, 1, col = "black", lty = 2)
-    text(x      = sort(qchisq(ppoints(nrow(x)), df = ncol(x)), 
-                       decreasing = TRUE)[which(plot_data$flagged == TRUE)],
-         y      = plot_data$d_sq[which(plot_data$flagged == TRUE)],
-         labels = plot_data$row[which(plot_data$flagged == TRUE)],
-         pos    = 3)
+    d_sq <- rep_len(NA, nrow(x_filtered))
+    d_sq[!complete.na] <- maha_data
+    
+    cut     <- stats::qchisq(confidence, ncol(x))
+    flagged <- (d_sq > cut)
+    
+    if (plot) {
+      plot_data <- data.frame(row     = seq_len(length(d_sq)),
+                              d_sq    = d_sq,
+                              flagged = flagged)
+  
+      plot_data <- plot_data[order(plot_data$d_sq, decreasing = TRUE),]
+  
+      qqplot(x     = qchisq(ppoints(nrow(x_filtered)), df = ncol(x_filtered)),
+             y     = plot_data$d_sq,
+             main  = paste("Q-Q plot of Mahalanobis Distance",
+                           "versus Quantiles of Chi-Square"),
+             xlab  = "Quantiles of Chi-Square",
+             ylab  = "Mahalanobis Distance",
+             pch   = 16,
+             col   = rgb(0, .4, .6, .5))
+      abline(0, 1, col = "black", lty = 2)
+      if (any(plot_data$flagged)) {
+        text(x      = sort(qchisq(ppoints(nrow(x_filtered)), df = ncol(x_filtered)),
+                           decreasing = TRUE)[which(plot_data$flagged == TRUE)],
+             y      = plot_data$d_sq[which(plot_data$flagged == TRUE)],
+             labels = plot_data$row[which(plot_data$flagged == TRUE)],
+             pos    = 3)
+      }
+    }
   }
+    
   if(flag == TRUE) {
     return(data.frame(d_sq = d_sq, flagged = flagged))
   }

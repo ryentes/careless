@@ -36,7 +36,7 @@ mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
   
   if(any(is.na(x_filtered))) {
     maha_data <- as.numeric(psych::outlier(x_filtered, plot = FALSE, bad = 0, na.rm = na.rm))
-    d_sq      <- rep_len(NA, nrow(x_filtered))
+    d_sq      <- rep_len(NA, nrow(x))
     d_sq[!complete.na] <- maha_data
     
     cut     <- stats::qchisq(confidence, ncol(x))
@@ -45,7 +45,7 @@ mahad <- function(x, plot = TRUE, flag = FALSE, confidence = 0.99, na.rm = TRUE)
   } else {
     maha_data <- mahalanobis(x_filtered, center = colMeans(x_filtered), cov = cov(x_filtered))
   
-    d_sq <- rep_len(NA, nrow(x_filtered))
+    d_sq <- rep_len(NA, nrow(x))
     d_sq[!complete.na] <- maha_data
     
     cut     <- stats::qchisq(confidence, ncol(x))

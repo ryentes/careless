@@ -4,7 +4,7 @@
 \alias{psychant}
 \title{Computes the psychometric antonym score}
 \usage{
-psychant(x, critval = -0.6, diag = FALSE)
+psychant(x, critval = -0.6, n_pairs = FALSE, diag = NULL)
 }
 \arguments{
 \item{x}{is a matrix of item responses}
@@ -12,14 +12,16 @@ psychant(x, critval = -0.6, diag = FALSE)
 \item{critval}{is the minimum magnitude of the correlation between two items
 in order for them to be considered psychometric synonyms. Defaults to -.60}
 
-\item{diag}{additionally return the number of item pairs available for each subject. Useful if dataset contains many missing values.}
+\item{n_pairs}{additionally return the number of item pairs available for each subject. Useful if dataset contains many missing values.}
+
+\item{diag}{deprecated. use n_pairs instead.}
 }
 \description{
 A convenient wrapper that calls \code{psychsyn} with argument \code{anto = TRUE} to compute the psychometric antonym score.
 }
 \examples{
 antonyms <- psychant(careless_dataset2, .50)
-antonyms <- psychant(careless_dataset2, .50, diag = TRUE)
+antonyms <- psychant(careless_dataset2, .50, n_pairs = TRUE)
 }
 \seealso{
 \code{\link{psychsyn}} for the main function, \code{\link{psychsyn_critval}} for a helper that allows to set an

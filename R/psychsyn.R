@@ -14,8 +14,9 @@
 #' in order for them to be considered psychometric synonyms. Defaults to .60
 #' @param anto determines whether psychometric antonyms are returned instead of
 #' psychometric synonyms. Defaults to \code{FALSE}
-#' @param npairs additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
+#' @param n_pairs additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
 #' @param resample_na if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.
+#' @param diag  deprecated. use n_pairs instead.
 #' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
 #' @references
 #' Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
@@ -30,12 +31,16 @@
 #' antonyms <- psychant(careless_dataset2, .50)
 #'
 #' #with diagnostics
-#' synonyms <- psychsyn(careless_dataset, .60, npairs = TRUE)
-#' antonyms <- psychant(careless_dataset2, .50, npairs = TRUE)
+#' synonyms <- psychsyn(careless_dataset, .60, n_pairs = TRUE)
+#' antonyms <- psychant(careless_dataset2, .50, n_pairs = TRUE)
 
-psychsyn <- function(x, critval=.60, anto=FALSE, npairs=FALSE, resample_na=TRUE) {
+psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE, diag=NULL) {
   x <- as.matrix(x) #Comment: why this?
 
+  if(!missing(diag)) {
+    warning("diag argument has been renamed to n_pairs and has been deprecated as of version x.x.x, please use the n_pairs argument instead.")
+    n_pairs <- diag
+  }
   # Helper function that identifies psychometric synonyms in a given dataset
   get_item_pairs <- function(x, critval=.60, anto=FALSE) {
     critval <- abs(critval) #Dummy Proofing
@@ -101,7 +106,7 @@ psychsyn <- function(x, critval=.60, anto=FALSE, npairs=FALSE, resample_na=TRUE)
   synonyms_df <- as.data.frame(t(synonyms)) # recast as data.frame with one row per observation
   colnames(synonyms_df) <- c("numPairs", "cor")
   # return number of available pairs if requested
-  if(npairs==TRUE) { return(synonyms_df) }
+  if(n_pairs==TRUE) { return(synonyms_df) }
   else { return(synonyms_df$cor) }
 }
 

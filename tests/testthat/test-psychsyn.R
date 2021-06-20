@@ -11,3 +11,6 @@ for(i in 1:replacements) {
 }
 
 synonyms <- psychsyn(dataset_na, .60)
+synonyms_pairs <- psychsyn(dataset_na, .60, n_pairs = TRUE)
+# antonym_pairs <- psychant(dataset_na, .15, n_pairs = TRUE) #no antonyms in dataset
+synonyms <- psychsyn(dataset_na, .60, diag = TRUE)

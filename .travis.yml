@@ -12,5 +12,6 @@ r:
 
 r_binary_packages:
   - knitr
+  - devtools
   - testthat
   - psych

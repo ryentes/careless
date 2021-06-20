@@ -1,5 +1,4 @@
 library(testthat)
 library(careless)
 
-#test_check("careless")
-devtools::test()
+testthat::test_check("careless")

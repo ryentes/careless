@@ -35,7 +35,7 @@
 #' antonyms <- psychant(careless_dataset2, .50, n_pairs = TRUE)
 
 psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE, diag=NULL) {
-  x <- as.matrix(x) #Comment: why this?
+  # x <- as.matrix(x) #Comment: why this?
 
   if(!missing(diag)) {
     warning("diag argument has been renamed to n_pairs and has been deprecated as of version x.x.x, please use the n_pairs argument instead.")
@@ -47,7 +47,7 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
 
     correlations <- stats::cor(x, use = "pairwise.complete.obs")
     correlations[upper.tri(correlations, diag=TRUE)] <- NA
-    correlations <- as.data.frame(as.table(correlations))
+    correlations <- as.data.frame(as.table(correlations)) # converts matrix of correlations to a long dataframe with columns Var1, Var2, Freq for correlation size
 
     # Identifying item pairs differs depending on whether the user wants
     # Psychometric Synonyms or Psychometric Antonyms
@@ -64,19 +64,20 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
       }
     }
 
-    matches <- item_pair_names
-    return(matches)
+    return(item_pair_names)
   }
   # get the item pairs above (below for anto = TRUE) the threshold
   item_pairs <- get_item_pairs(x, critval, anto)
 
   # Helper function to calculate the within person correlation for a single individual
   syn_for_one <- function(x, item_pairs, resample_na) {
+    # how many pairs are available after omitting
+    # pairs for which at least one item is NA:
     item_pairs_omit_na <- which(!(is.na(x[item_pairs[,1]]) | is.na(x[item_pairs[,2]])))
     sum_item_pairs <- length(item_pairs_omit_na)
-    #only execute if more than two item pairs
+    #now, execute only if more than two item pairs available
     if(sum_item_pairs > 2) {
-      itemvalues <- cbind(as.numeric(x[as.numeric(item_pairs[,1])]), as.numeric(x[as.numeric(item_pairs[,2])]))
+      itemvalues <- data.frame(pair_x  = x[item_pairs[,1]], pair_y = x[item_pairs[,2]])
 
       # helper that calculates within-person correlation
       psychsyn_cor <- function(x) {
@@ -104,7 +105,7 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
   # calculate the within-person synonym cor for each person
   synonyms <- apply(x,1,syn_for_one, item_pairs, resample_na)
   synonyms_df <- as.data.frame(t(synonyms)) # recast as data.frame with one row per observation
-  colnames(synonyms_df) <- c("numPairs", "cor")
+  colnames(synonyms_df) <- c("n_pairs", "cor")
   # return number of available pairs if requested
   if(n_pairs==TRUE) { return(synonyms_df) }
   else { return(synonyms_df$cor) }

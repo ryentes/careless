@@ -29,10 +29,8 @@ colnames(dataset_na_matrix) <- NULL
 synonyms_mat <- psychsyn(dataset_na_matrix, .60)
 
 test_that("Input can be either dataframe or matrix", {
-  expect_equal(synonyms, synonyms_mat)
+  expect_equal(synonyms$cor, synonyms_mat)
 })
-
-
 
 # manual test case
 set.seed(1337)

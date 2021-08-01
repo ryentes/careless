@@ -48,17 +48,18 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
     correlations <- stats::cor(x, use = "pairwise.complete.obs")
     correlations[upper.tri(correlations, diag=TRUE)] <- NA
     correlations <- as.data.frame(as.table(correlations)) # converts matrix of correlations to a long dataframe with columns Var1, Var2, Freq for correlation size
-
+    
     # Identifying item pairs differs depending on whether the user wants
     # Psychometric Synonyms or Psychometric Antonyms
     if(anto==FALSE) {
-      item_pair_names <- correlations[which(correlations$Freq > critval, arr.ind=TRUE),c(1,2)]
+      # subset those correlation pairs which are above critval and return the item names of the pair:
+      item_pair_names <- correlations[correlations$Freq > critval & !is.na(correlations$Freq),c(1,2)] 
       if(nrow(item_pair_names)==0) {
         stop("No Psychometric Synonyms found.")
       }
     }
     else if(anto==TRUE) {
-      item_pair_names <- correlations[which(correlations$Freq < -critval, arr.ind=TRUE),c(1,2)]
+      item_pair_names <- correlations[correlations$Freq < -critval & !is.na(correlations$Freq),c(1,2)] 
       if(nrow(item_pair_names)==0) {
         stop("No Psychometric Antonyms found.")
       }
@@ -89,7 +90,7 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
         counter <- 1
         synvalue <- psychsyn_cor(itemvalues)
         while(counter <= 10 & is.na(synvalue)) {
-          itemvalues <- t(apply(itemvalues, 1, sample, 2, replace = F))
+          itemvalues <- t(apply(itemvalues, 1, sample, 2, replace = F)) # switches pair x with pair y at random
           synvalue <- psychsyn_cor(itemvalues)
           counter = counter+1
         }

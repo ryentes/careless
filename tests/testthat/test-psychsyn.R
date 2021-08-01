@@ -1,16 +1,8 @@
 # test 1: calculate psych syn on a dataset with missings
 
 # first, create a dataset with missings
-dataset_na <- careless_dataset
-replacements <- 500
-random_row <- sample(1:nrow(dataset_na), replacements, replace = TRUE)
-random_col <- sample(1:ncol(dataset_na), replacements, replace = TRUE)
-
-for(i in 1:replacements) {
-  dataset_na[random_row[i], random_col[i]] <- NA
-}
-
-synonyms <- psychsyn(dataset_na, .60)
+data("careless_testing_na")
+synonyms <- psychsyn(careless_testing_na, .60)
 
 test_that("All values within -1 to 1", {
   expect_lte(max(synonyms, na.rm = TRUE), 1)
@@ -18,15 +10,15 @@ test_that("All values within -1 to 1", {
 })
 
 
-synonyms_pairs <- psychsyn(dataset_na, .60, n_pairs = TRUE)
-# antonym_pairs <- psychant(dataset_na, .15, n_pairs = TRUE) #no antonyms in dataset
-synonyms <- psychsyn(dataset_na, .60, diag = TRUE)
+synonyms_pairs <- psychsyn(careless_testing_na, .60, n_pairs = TRUE)
+# antonym_pairs <- psychant(careless_testing_na, .15, n_pairs = TRUE) #no antonyms in dataset
+synonyms <- psychsyn(careless_testing_na, .60, diag = TRUE)
 
 
 # what if persons pass an unnamed matrix instead of a dataframe
-dataset_na_matrix <- as.matrix(dataset_na)
-colnames(dataset_na_matrix) <- NULL
-synonyms_mat <- psychsyn(dataset_na_matrix, .60)
+careless_testing_na_matrix <- as.matrix(careless_testing_na)
+colnames(careless_testing_na_matrix) <- NULL
+synonyms_mat <- psychsyn(careless_testing_na_matrix, .60)
 
 test_that("Input can be either dataframe or matrix", {
   expect_equal(synonyms$cor, synonyms_mat)
@@ -75,3 +67,4 @@ test_that("Specific cases of synonyms", {
   expect_lte(synonyms_2[103], -.85)
   expect_equal(synonyms_2[104], 0)
 })
+

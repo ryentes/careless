@@ -17,7 +17,7 @@
 #' @param n_pairs additionally return the number of item pairs available for each observation. Useful if dataset contains many missing values.
 #' @param resample_na if psychsyn returns NA for a respondent resample to attempt getting a non-NA result.
 #' @param diag  deprecated. use n_pairs instead.
-#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}
+#' @author Richard Yentes \email{ryentes@gmail.com}, Francisco Wilhelm \email{franciscowilhelm@gmail.com}, Cameron S. Kay
 #' @references
 #' Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data.
 #' \emph{Psychological Methods, 17(3)}, 437-455. \doi{10.1037/a0028085}
@@ -45,27 +45,27 @@ psychsyn <- function(x, critval=.60, anto=FALSE, n_pairs=FALSE, resample_na=TRUE
 # Helper function that identifies psychometric synonyms in a given dataset
 get_item_pairs <- function(x, critval=.60, anto=FALSE) {
   critval <- abs(critval) #Dummy Proofing
-  
+
   if(any(is.na(x))) {
     correlations <- stats::cor(x, use = "pairwise.complete.obs")
   } else {
     correlations <- stats::cor(x, use = "everything")
   }
-  
+
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))  # converts matrix of correlations to a long dataframe with columns Var1, Var2, Freq for correlation size
-    
+
     # Identifying item pairs differs depending on whether the user wants
     # Psychometric Synonyms or Psychometric Antonyms
     if(anto==FALSE) {
       # subset those correlation pairs which are above critval and return the item names of the pair:
-      item_pair_names <- correlations[correlations$Freq > critval & !is.na(correlations$Freq),c(1,2)] 
+      item_pair_names <- correlations[correlations$Freq > critval & !is.na(correlations$Freq),c(1,2)]
       if(nrow(item_pair_names)==0) {
         stop("No Psychometric Synonyms found.")
       }
     }
     else if(anto==TRUE) {
-      item_pair_names <- correlations[correlations$Freq < -critval & !is.na(correlations$Freq),c(1,2)] 
+      item_pair_names <- correlations[correlations$Freq < -critval & !is.na(correlations$Freq),c(1,2)]
       if(nrow(item_pair_names)==0) {
         stop("No Psychometric Antonyms found.")
       }

@@ -1,5 +1,10 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
+os:
+ -linux
+ -osx
+ -windows
+
 language: R
 cache: packages
 warnings_are_errors: true
@@ -8,7 +13,8 @@ sudo: required
 r:
  - release
  - devel
- 
+ - oldrel
+
 
 r_binary_packages:
   - knitr

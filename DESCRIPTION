@@ -1,14 +1,30 @@
 Package: careless
 Type: Package
 Title: Procedures for Computing Indices of Careless Responding
-Version: 1.2.1
-Date: 2021-03-14
+Version: 1.2.2
+Date: 2023-09-30
 Authors@R: c(
-            person("Richard", "Yentes" , email = "ryentes@gmail.com", role = c("cre", "aut")),
+            person(
+              given="Richard", 
+              family="Yentes" , 
+              email="ryentes@gmail.com", 
+              role = c("cre", "aut"), 
+              comment=c(ORCID="0000-0002-6767-8065")
+            ),
             person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut")))
 Maintainer: Richard Yentes <ryentes@gmail.com>
-Description: When taking online surveys, participants sometimes respond to items without regard to their content.
-    These types of responses, referred to as careless or insufficient effort responding, constitute significant problems for data quality, leading to distortions in data analysis and hypothesis testing, such as spurious correlations. The 'R' package 'careless' provides solutions designed to detect such careless / insufficient effort responses by allowing easy calculation of indices proposed in the literature. It currently supports the calculation of longstring, even-odd consistency, psychometric synonyms/antonyms, Mahalanobis distance, and intra-individual response variability (also termed inter-item standard deviation). For a review of these methods, see Curran (2016) <doi:10.1016/j.jesp.2015.07.006>.
+Description: When taking online surveys, participants sometimes respond to items
+    without regard to their content.
+    These types of responses, referred to as careless or insufficient effort 
+    responding, constitute significant problems for data quality, leading to 
+    distortions in data analysis and hypothesis testing, such as spurious 
+    correlations. The 'R' package 'careless' provides solutions designed to 
+    detect such careless / insufficient effort responses by allowing easy 
+    calculation of indices proposed in the literature. It currently supports the
+    calculation of longstring, even-odd consistency, psychometric 
+    synonyms/antonyms, Mahalanobis distance, and intra-individual response 
+    variability (also termed inter-item standard deviation). For a review of 
+    these methods, see Curran (2016) 
 License: MIT + file LICENSE
 URL: https://github.com/ryentes/careless/
 BugReports: https://github.com/ryentes/careless/issues
@@ -21,4 +37,4 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3

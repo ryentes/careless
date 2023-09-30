@@ -13,7 +13,7 @@ Collection of Implementations for Indices of Careless Responding.
 Careless or insufficient effort responding in surveys, i.e. responding to items without regard to their content, is a common occurrence in surveys. These types of responses constitute significant problems for data quality leading to distortions in data analysis and hypothesis testing, such as spurious correlations. The R package careless provides solutions designed to detect such careless / insufficient effort responses by allowing easy calculation of indices proposed in the literature. It currently supports the calculation of Longstring, Even-Odd Consistency, Psychometric Synonyms/Antonyms, Mahalanobis Distance, and Intra-individual Response Variability (also termed Inter-item Standard Deviation).
 
 ## Current Version
-Current version is 1.2.1
+Current version is 1.2.2
 
 ## Installing from source
 

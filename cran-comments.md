@@ -1,15 +1,10 @@
 ## Test environments
-win builder (devel and release)
-ubuntu 16.04 (On Travis CI), R 4.0.2
+macos-latest: release
+windows-latest: release, 3.6, 4.1
+ubuntu-latest: release, oldrel-1, oldrel-2, oldrel-3, oldrel-4
 
 ## R CMD check results
-There were no ERRORs or WARNINGs. 
-
-1 NOTE
-
-Changed email address from ncsu email to personal gmail as I've  graduated
-from ncsu and cannot guarantee continued access to that email. I sent a
-confirmation email to cran-submissions@r-project.org from my ncsu email.
+There were no ERRORs, WARNINGs, or NOTES. 
 
 ## Downstream dependencies
 None

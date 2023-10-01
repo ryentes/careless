@@ -3,11 +3,19 @@ vers <- paste("R package version", meta$Version)
 
 citHeader("To cite careless in publication use:")
 
-citEntry(entry = "Manual",
-				 title = "careless: Procedures for computing indices of careless responding",
-				 author = personList(as.person("Richard D. Yentes"),
-				 										 as.person("Francisco Wilhelm")),
-				 year = year,
-				 note = vers,
-				 textVersion = paste("Yentes R.D., & Wilhelm, F. (", year, "). careless: Procedures for computing indices of careless responding.", vers, ".", sep = "")
+bibentry(
+  bibtype = "Manual",
+	title = "careless: Procedures for computing indices of careless responding",
+	author = c(
+	  person(
+      given="Richard",
+      family="Yentes" ,
+      email="ryentes@gmail.com",
+      role = c("cre", "aut"),
+      comment=c(ORCID="0000-0002-6767-8065")
+    ),
+    person("Francisco", "Wilhelm", email = "franciscowilhelm@gmail.com", role = c("aut"))),
+	year = year,
+	note = vers,
+	textVersion = paste("Yentes R.D., & Wilhelm, F. (", year, "). careless: Procedures for computing indices of careless responding.", vers, ".", sep = "")
 )

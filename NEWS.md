@@ -1,7 +1,8 @@
-# (future) careless 1.2.2
+# careless 1.2.2
 * Changed column names in output of psychsyn_critval from ("Var1", "Var2", 
 "Freq") to ("var1", "var2", "cor") for accuracy and consistency with this and
 other packages. 
+* Updates to address breaking changes in roxygen
 
 # careless 1.2.1
 * even-odd consistency score: updated interpretation of even-odd to maintain consistency with other indices. It is now coded such that higher scores indicate higher levels of careless responding. Before, higher scores indicated lower levels of careless responding. This makes the even-odd index consistent with the other indices.

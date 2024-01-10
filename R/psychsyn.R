@@ -49,7 +49,12 @@ psychsyn <- function(x, critval=.60, anto=FALSE, diag=FALSE, resample_na=TRUE) {
 get_item_pairs <- function(x, critval=.60, anto=FALSE) {
   critval <- abs(critval) #Dummy Proofing
   
-  correlations <- stats::cor(x, use = "pairwise.complete.obs")
+  if(any(is.na(x))) {
+    correlations <- stats::cor(x, use = "pairwise.complete.obs")
+  } else {
+    correlations <- stats::cor(x, use = "everything")
+  }
+  
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))
 
@@ -82,7 +87,11 @@ syn_for_one <- function(x, item_pairs, resample_na) {
 
     # helper that calculates within-person correlation
     psychsyn_cor <- function(x) {
-      suppressWarnings(stats::cor(x, use = "pairwise.complete.obs", method = "pearson")[1,2])
+      if(any(is.na(x))) {
+        suppressWarnings(stats::cor(x, use = "pairwise.complete.obs")[1,2])
+      } else {
+        suppressWarnings(stats::cor(x, use = "everything")[1,2])
+      }
     }
 
     # if resample_na == TRUE, re-calculate psychsyn should a result return NA

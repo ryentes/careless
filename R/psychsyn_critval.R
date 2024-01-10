@@ -13,7 +13,13 @@
 #' psychsyn_cor <- psychsyn_critval(careless_dataset, anto = TRUE)
 
 psychsyn_critval <- function(x, anto = FALSE) {
-  correlations <- stats::cor(x, use = "pairwise.complete.obs")
+  
+  if(any(is.na(x))) {
+    correlations <- stats::cor(x, use = "pairwise.complete.obs")
+  } else {
+    correlations <- stats::cor(x, use = "everything")
+  }
+  
   correlations[upper.tri(correlations, diag=TRUE)] <- NA
   correlations <- as.data.frame(as.table(correlations))
 
